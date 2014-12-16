@@ -42,7 +42,7 @@
 		413D69D21A3F121B00DE2CE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		413D69D31A3F121B00DE2CE1 /* BookVaultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookVaultTests.swift; sourceTree = "<group>"; };
 		41F27F301A404AE3007ED2B4 /* camera-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-01.png"; sourceTree = "<group>"; };
-		41F27F391A405BB6007ED2B4 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Book.swift; path = ../Book.swift; sourceTree = "<group>"; };
+		41F27F391A405BB6007ED2B4 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		41F27F3D1A405C44007ED2B4 /* BookStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookStore.swift; sourceTree = "<group>"; };
 		41FCD24E1A3F21360013BDE8 /* cover150x250.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cover150x250.jpeg; path = Images.xcassets/cover150x250.jpeg; sourceTree = "<group>"; };
 		41FCD2501A3F23D70013BDE8 /* AddNewItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewItemViewController.swift; sourceTree = "<group>"; };
