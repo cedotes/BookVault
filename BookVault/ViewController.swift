@@ -14,12 +14,7 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        var book = Book(title: "Title 1", author: "Author 1")
-        BookStore.sharedInstance.add(book)
-        
-        book = Book(title: "Title 2", author: "Author 2")
-        BookStore.sharedInstance.add(book)
+
     }
 
     override func didReceiveMemoryWarning() {
