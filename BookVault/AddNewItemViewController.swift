@@ -21,6 +21,17 @@ class AddNewItemViewController: UIViewController {
         }
     }
     
+    @IBAction func checkForEntries(sender: UIBarButtonItem) {
+        if (newTitle == ""){
+            newTitle.backgroundColor = UIColor.redColor()
+        }
+        else {
+            // perform Segue with Idetifier "addNewItemSegue" if title is set
+            performSegueWithIdentifier("addNewItemSegue", sender: self)
+        }
+        
+    }
+    
     @IBAction func showFurtherInformation(sender: UIButton) {
         let alertController = UIAlertController(title: "Alert", message:
             "clicked show", preferredStyle: UIAlertControllerStyle.Alert)

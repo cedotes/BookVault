@@ -186,8 +186,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="XAR-zv-dlP">
                             <connections>
-                                <action selector="addItemToMemory:" destination="eX9-3j-xjn" id="74o-vt-wOh"/>
-                                <segue destination="SUr-hL-Rzx" kind="modal" identifier="dismissAndSave" id="jgU-BE-qJR"/>
+                                <action selector="checkForEntries:" destination="eX9-3j-xjn" id="teE-pL-gG6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -231,6 +230,7 @@
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="eX9-3j-xjn" kind="relationship" relationship="rootViewController" id="PEc-Uh-6Kp"/>
+                        <segue destination="SUr-hL-Rzx" kind="modal" identifier="addNewItemSegue" id="3eE-qv-yTI"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xbz-fX-5Ja" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -247,7 +247,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ZNc-gp-ZiJ"/>
+        <segue reference="3eE-qv-yTI"/>
         <segue reference="Fpt-3K-7WW"/>
     </inferredMetricsTieBreakers>
 </document>

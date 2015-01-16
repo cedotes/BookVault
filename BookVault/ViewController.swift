@@ -9,11 +9,17 @@
 import UIKit
 
 class ViewController: UITableViewController {
-    let customTableViewCellItems = ["Cell A", "Book B"]
+    var items: NSMutableArray = []
+    
+    func loadInitialData(){
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        loadInitialData()
     }
 
     override func didReceiveMemoryWarning() {
