@@ -22,11 +22,11 @@ class AddNewItemViewController: UIViewController {
     }
     
     @IBAction func checkForEntries(sender: UIBarButtonItem) {
-        if (newTitle == ""){
+       if (newTitle == ""){
             newTitle.backgroundColor = UIColor.redColor()
         }
         else {
-            // perform Segue with Idetifier "addNewItemSegue" if title is set
+            // perform Segue with Identifier "addNewItemSegue" if title is set
             performSegueWithIdentifier("addNewItemSegue", sender: self)
         }
         
