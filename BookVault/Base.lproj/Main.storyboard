@@ -71,7 +71,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MOF-oK-uYl">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MOF-oK-uYl">
                                 <rect key="frame" x="98" y="154" width="192" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="02M-vA-LI1"/>
@@ -87,7 +87,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Year" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jVG-IJ-HLp">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Publish Date" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jVG-IJ-HLp">
                                 <rect key="frame" x="98" y="230" width="192" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -186,8 +186,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="XAR-zv-dlP">
                             <connections>
-                                <action selector="addItemToMemory:" destination="eX9-3j-xjn" id="74o-vt-wOh"/>
-                                <segue destination="SUr-hL-Rzx" kind="modal" identifier="dismissAndSave" id="jgU-BE-qJR"/>
+                                <segue destination="SUr-hL-Rzx" kind="modal" identifier="dismissAndSave" id="3Kk-vh-R3H"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -247,7 +246,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ZNc-gp-ZiJ"/>
+        <segue reference="3Kk-vh-R3H"/>
         <segue reference="Fpt-3K-7WW"/>
     </inferredMetricsTieBreakers>
 </document>
