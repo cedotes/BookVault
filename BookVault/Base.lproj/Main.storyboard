@@ -35,7 +35,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Md1-NJ-IJE" kind="modal" identifier="editItemSegue" id="GVE-g1-DIJ"/>
+                                    <segue destination="Jeq-BL-3sQ" kind="push" identifier="editItemSegue" id="cJ7-lL-Yih"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -221,7 +221,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="zPe-03-ddY"/>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="cb7-Rg-NLA"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ndl-EI-9Yi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -376,25 +376,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="55x-7G-isg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1000" y="1058"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Qvh-aR-MhH">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Md1-NJ-IJE" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MjQ-pa-ZzS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Jeq-BL-3sQ" kind="relationship" relationship="rootViewController" id="fpp-TO-3f8"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KIt-nF-HM9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="586" y="1058"/>
+            <point key="canvasLocation" x="586" y="1034"/>
         </scene>
     </scenes>
     <resources>
@@ -407,6 +389,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ZNc-gp-ZiJ"/>
+        <segue reference="w5M-X5-No6"/>
     </inferredMetricsTieBreakers>
 </document>

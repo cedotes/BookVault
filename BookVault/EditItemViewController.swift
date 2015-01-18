@@ -18,7 +18,6 @@ class EditItemViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         if book != nil {
             titleField.text = book?.title
             authorField.text = book?.author

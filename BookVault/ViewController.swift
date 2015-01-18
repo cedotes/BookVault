@@ -91,6 +91,25 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
         return cell
     }
     
+    //MARK: NSFetchedResultsController Delegate Functions
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        
+        switch type {
+        case NSFetchedResultsChangeType.Insert:
+            tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: UITableViewRowAnimation.Fade)
+            break
+        case NSFetchedResultsChangeType.Delete:
+            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: UITableViewRowAnimation.Fade)
+            break
+        case NSFetchedResultsChangeType.Move:
+            break
+        case NSFetchedResultsChangeType.Update:
+            break
+        default:
+            break
+        }
+    }
+
     // define swipe actions
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -103,6 +122,12 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
             // remove the deleted item from the `UITableView`
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
+    }
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Potentially incomplete method implementation.
+        // Return the number of sections.
+        return 1
     }
         
     //TODO
@@ -118,17 +143,20 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         // TODO: Extract relevant data for the editViewController from the cell and save it for the next viewController
-        /*if segue.identifier == "editItemSegue" {
+        if segue.identifier == "editItemSegue" {
+                /*
                 let cell = sender as UITableViewCell
                 let indexPath = tableView.indexPathForCell(cell)
-                let editController:EditItemViewController = segue.destinationViewController as EditItemViewController
             
-                let fetchedResultController = self.getFetchResultController()
-            
-                let book:Book = fetchedResultController.objectAtIndexPath(indexPath!) as Book
-                editController.book = book
+                if let editController:EditItemViewController = segue.destinationViewController as? EditItemViewController{
+                    
+                    let fetchedResultController = self.getFetchResultController()
+                    let book:Book = fetchedResultController.objectAtIndexPath(indexPath!) as Book
+                    /*
+                    editController.book = book*/
+                }
+                */
             }
-*/
     }
     
     func saveBook(title: String, author: String) {
