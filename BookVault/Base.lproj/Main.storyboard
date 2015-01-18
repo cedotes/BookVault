@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customTableViewCell" textLabel="ixw-Ti-v7n" detailTextLabel="ZWx-61-8rL" rowHeight="90" style="IBUITableViewCellStyleSubtitle" id="6QV-EJ-QZY">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="customTableViewCell" textLabel="ixw-Ti-v7n" detailTextLabel="ZWx-61-8rL" rowHeight="90" style="IBUITableViewCellStyleSubtitle" id="6QV-EJ-QZY">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6QV-EJ-QZY" id="NNX-xR-vmP">
@@ -35,11 +35,15 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Md1-NJ-IJE" kind="modal" id="L3a-G9-PAA"/>
+                                    <segue destination="Md1-NJ-IJE" kind="modal" identifier="editItemSegue" id="GVE-g1-DIJ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="vXZ-lx-hvc" id="vdo-JW-2HM"/>
+                            <outlet property="delegate" destination="vXZ-lx-hvc" id="9ae-6g-W1v"/>
+                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Library" id="neV-gt-Jem">
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="7hd-5g-vXY">
@@ -196,6 +200,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="newAuthor" destination="abn-x8-rZ8" id="SOX-La-p2b"/>
+                        <outlet property="newTitle" destination="siT-8p-0m7" id="QAt-1W-iHY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xuQ-aD-wWF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -241,7 +249,7 @@
         <!--Edit Item-->
         <scene sceneID="u31-aT-myo">
             <objects>
-                <viewController id="Jeq-BL-3sQ" customClass="EditItemViewController" sceneMemberID="viewController">
+                <viewController id="Jeq-BL-3sQ" customClass="EditItemViewController" customModule="BookVault" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oHA-tk-vGk"/>
                         <viewControllerLayoutGuide type="bottom" id="bwu-yq-e8K"/>
@@ -355,12 +363,20 @@
                                 <segue destination="SUr-hL-Rzx" kind="modal" id="vuZ-15-1CG"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="yIs-3q-8gR"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="yIs-3q-8gR">
+                            <connections>
+                                <segue destination="SUr-hL-Rzx" kind="modal" identifier="dismissAndSave" id="w5M-X5-No6"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="authorField" destination="uZk-on-jCG" id="OFw-4K-LMz"/>
+                        <outlet property="titleField" destination="wTI-US-ES7" id="sXo-IP-NLK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="55x-7G-isg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1000" y="1140"/>
+            <point key="canvasLocation" x="1000" y="1058"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Qvh-aR-MhH">
@@ -378,7 +394,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KIt-nF-HM9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="586" y="1140"/>
+            <point key="canvasLocation" x="586" y="1058"/>
         </scene>
     </scenes>
     <resources>

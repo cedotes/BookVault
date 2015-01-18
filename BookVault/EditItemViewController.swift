@@ -7,13 +7,29 @@
 //
 
 import UIKit
+import CoreData
 
 class EditItemViewController: UIViewController {
 
+    @IBOutlet weak var titleField: UITextField!
+    @IBOutlet weak var authorField: UITextField!
+    
+    var book: Book? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if book != nil {
+            titleField.text = book?.title
+            authorField.text = book?.author
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        // Save input data for storage in ViewController
+        if segue.identifier == "dismissAndSave" {
+            // Replace entry in CoreData        
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,17 +45,5 @@ class EditItemViewController: UIViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
-
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
