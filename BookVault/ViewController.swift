@@ -31,31 +31,7 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
         
         return fetchedResultController
     }
-    
-    func getFetchResultForRow(){
-        let fetchRequest = NSFetchRequest(entityName: "Book")
-        
-        // Create a sort descriptor object that sorts on the "title"
-        // property of the Core Data object
-        let sortDescriptor = NSSortDescriptor(key: "author", ascending: true)
-        
-        // Set the list of sort descriptors in the fetch request,
-        // so it includes the sort descriptor
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        // Create a new predicate that filters out any object that
-        // doesn't have a title of "1st Item" exactly.
-        let predicate = NSPredicate(format: "title == %@", "Titel")
-        
-        // Set the predicate on the fetch request
-        fetchRequest.predicate = predicate
-        
-        if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [Book] {
-            books = fetchResults
-        }
-    }
-    
-    
+
     func getFetchResults() -> [Book]? {
         //parse fetched data
         var error: NSError?
@@ -106,7 +82,6 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("customTableViewCell", forIndexPath: indexPath) as UITableViewCell
-        
         
         let book = books[indexPath.row]
         cell.textLabel?.text = book.valueForKey("title") as String?
@@ -175,20 +150,7 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
             let indexPath = tableView.indexPathForCell(cell)
             
                 if let editController:EditItemViewController = segue.destinationViewController as? EditItemViewController{
-                    /*
-                        *** DEBUG ***
                     
-                        habe: angeklickte Zelle (Text 'titel' bekannt), IndexPfad für die Zelle, Controller des zweiten Views.
-                        benötige: extrahiere Book Objekt aus der CoreData DB
-                    
-                        wie? 
-                        - mit fetchedResultController? hat objectAtIndexPath Methode. Funktioniert nicht. Rückgabe nil
-                        - mit fetchedResults? let fetchedResults = self.getFetchResults()
-                    
-                    */
-                    //let book = fetchedResultController.objectAtIndexPath(indexPath!) as Book <- funktioniert nicht
-                    
-                    // give Book object info to the secondViewController
                     editController.book = books[indexPath!.row]
                 }
             }
@@ -213,12 +175,6 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
         }  
         //insert into table to show up
         books.append(book)
-    }
-    
-    
-    //TODO: complete function
-    func containsBook(title: String, author: String) -> Bool{
-        return true
     }
     
     //check if CoreData entity is empty
