@@ -11,9 +11,10 @@ import CoreData
 
 class ViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
-    var books = [NSManagedObject]()
+    var books = [Book]()
     
     let managedContext:NSManagedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
+    var fetchedResultController: NSFetchedResultsController = NSFetchedResultsController()
     
     func getSortedFetchRequest() -> NSFetchRequest {
         //fetch all objects of entity
@@ -31,11 +32,36 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
         return fetchedResultController
     }
     
-    func getFetchResults() -> [NSManagedObject]? {
+    func getFetchResultForRow(){
+        let fetchRequest = NSFetchRequest(entityName: "Book")
+        
+        // Create a sort descriptor object that sorts on the "title"
+        // property of the Core Data object
+        let sortDescriptor = NSSortDescriptor(key: "author", ascending: true)
+        
+        // Set the list of sort descriptors in the fetch request,
+        // so it includes the sort descriptor
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        // Create a new predicate that filters out any object that
+        // doesn't have a title of "1st Item" exactly.
+        let predicate = NSPredicate(format: "title == %@", "Titel")
+        
+        // Set the predicate on the fetch request
+        fetchRequest.predicate = predicate
+        
+        if let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [Book] {
+            books = fetchResults
+        }
+    }
+    
+    
+    func getFetchResults() -> [Book]? {
         //parse fetched data
         var error: NSError?
         
-        let fetchedResults = managedContext.executeFetchRequest(getSortedFetchRequest(), error: &error) as [NSManagedObject]?
+        let fetchedResults = managedContext.executeFetchRequest(getSortedFetchRequest(), error: &error) as [Book]?
+        books = fetchedResults!
         
         return fetchedResults
     }
@@ -52,10 +78,10 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        var fetchedResultController = getFetchResultController()
+        fetchedResultController = getFetchResultController()
         fetchedResultController.delegate = self
         fetchedResultController.performFetch(nil)
-        
+        self.getFetchResults()
         
         // ONLY FOR DEVELOPMENT: if core data is too much populated, easily restore to just dummy data
         //  HOW TO USE: uncomment, run, comment, run again
@@ -72,13 +98,14 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
     
     // set the correct number of rows for number of items in BookStore
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return books.count
+        let numberOfRowsInSection = fetchedResultController.sections?[section].numberOfObjects
+        return numberOfRowsInSection!
     }
     
     // Allow for custom cells and define them
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("customTableViewCell") as UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("customTableViewCell", forIndexPath: indexPath) as UITableViewCell
         
         
         let book = books[indexPath.row]
@@ -109,6 +136,10 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
             break
         }
     }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController!) {
+        tableView.reloadData()
+    }
 
     // define swipe actions
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -118,21 +149,17 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
             managedContext.deleteObject(books[indexPath.row] as NSManagedObject)
             books.removeAtIndex(indexPath.row)
             managedContext.save(nil)
-            
-            // remove the deleted item from the `UITableView`
-            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 1
+        let numberOfSections = fetchedResultController.sections?.count
+        return numberOfSections!
     }
+    
         
     //TODO
     @IBAction func editItemsInTableView(sender: UIBarButtonItem) {
-        
         // dummy function:
         let alertController = UIAlertController(title: "Alert", message:
             "clicked Edit", preferredStyle: UIAlertControllerStyle.Alert)
@@ -144,18 +171,26 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         // TODO: Extract relevant data for the editViewController from the cell and save it for the next viewController
         if segue.identifier == "editItemSegue" {
-                /*
-                let cell = sender as UITableViewCell
-                let indexPath = tableView.indexPathForCell(cell)
+            let cell = sender as UITableViewCell
+            let indexPath = tableView.indexPathForCell(cell)
             
                 if let editController:EditItemViewController = segue.destinationViewController as? EditItemViewController{
-                    
-                    let fetchedResultController = self.getFetchResultController()
-                    let book:Book = fetchedResultController.objectAtIndexPath(indexPath!) as Book
                     /*
-                    editController.book = book*/
+                        *** DEBUG ***
+                    
+                        habe: angeklickte Zelle (Text 'titel' bekannt), IndexPfad für die Zelle, Controller des zweiten Views.
+                        benötige: extrahiere Book Objekt aus der CoreData DB
+                    
+                        wie? 
+                        - mit fetchedResultController? hat objectAtIndexPath Methode. Funktioniert nicht. Rückgabe nil
+                        - mit fetchedResults? let fetchedResults = self.getFetchResults()
+                    
+                    */
+                    //let book = fetchedResultController.objectAtIndexPath(indexPath!) as Book <- funktioniert nicht
+                    
+                    // give Book object info to the secondViewController
+                    editController.book = books[indexPath!.row]
                 }
-                */
             }
     }
     
@@ -165,7 +200,7 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
             inManagedObjectContext: managedContext)
         
         let book = NSManagedObject(entity: entity!,
-            insertIntoManagedObjectContext:managedContext)
+            insertIntoManagedObjectContext:managedContext) as Book
         
         //Key-Value-Coding for attributes
         book.setValue(title, forKey: "title")
