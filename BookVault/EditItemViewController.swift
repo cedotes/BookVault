@@ -27,7 +27,8 @@ class EditItemViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         // Save input data for storage in ViewController
         if segue.identifier == "dismissAndSave" {
-            // Replace entry in CoreData        
+            // Replace entry in CoreData
+            self.saveChangedBook(titleField.text, author: authorField.text)
         }
     }
 
@@ -43,6 +44,38 @@ class EditItemViewController: UIViewController {
         
         self.presentViewController(alertController, animated: true, completion: nil)
     }
+    
+    func saveChangedBook(title: String, author: String) {
+        //get NSManagedObjectContext
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext!
+        
+        //create new managed object and insert it into managed object context
+        let entity =  NSEntityDescription.entityForName("Book",
+            inManagedObjectContext: managedContext)
+        
+        //check if Book already exists
+        if book != nil {
+            book?.setValue(titleField.text as String, forKey: "title")
+            book?.setValue(authorField.text as String, forKey: "author")
+        }else{
+
+            let newBook = NSManagedObject(entity: entity!,
+                insertIntoManagedObjectContext:managedContext)
+        
+            //Key-Value-Coding for attributes
+            newBook.setValue(title, forKey: "title")
+            newBook.setValue(author, forKey: "author")
+        
+            //commit changes by saving + error handling
+            var error: NSError?
+            if !managedContext.save(&error) {
+                println("Could not save \(error), \(error?.userInfo)")
+            }
+        }
+    }
+
     
 
 }
