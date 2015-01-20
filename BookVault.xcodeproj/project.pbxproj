@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41273AAA1A6BDF0300CC8F94 /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41273AA91A6BDF0300CC8F94 /* EditItemViewController.swift */; };
+		41273AAC1A6BE9F600CC8F94 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41273AAB1A6BE9F600CC8F94 /* Book.swift */; };
 		413D69BE1A3F121B00DE2CE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413D69BD1A3F121B00DE2CE1 /* AppDelegate.swift */; };
 		413D69C01A3F121B00DE2CE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413D69BF1A3F121B00DE2CE1 /* ViewController.swift */; };
 		413D69C31A3F121B00DE2CE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 413D69C11A3F121B00DE2CE1 /* Main.storyboard */; };
@@ -30,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		41273AA91A6BDF0300CC8F94 /* EditItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
+		41273AAB1A6BE9F600CC8F94 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		413D69B81A3F121B00DE2CE1 /* BookVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		413D69BC1A3F121B00DE2CE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		413D69BD1A3F121B00DE2CE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,10 +90,12 @@
 			isa = PBXGroup;
 			children = (
 				41E6E58A1A6AB83A000A74F2 /* BookVault.xcdatamodeld */,
+				41273AAB1A6BE9F600CC8F94 /* Book.swift */,
 				41F27F321A404AF7007ED2B4 /* pictures */,
 				413D69BD1A3F121B00DE2CE1 /* AppDelegate.swift */,
 				413D69BF1A3F121B00DE2CE1 /* ViewController.swift */,
 				41FCD2501A3F23D70013BDE8 /* AddNewItemViewController.swift */,
+				41273AA91A6BDF0300CC8F94 /* EditItemViewController.swift */,
 				413D69C11A3F121B00DE2CE1 /* Main.storyboard */,
 				413D69C41A3F121B00DE2CE1 /* Images.xcassets */,
 				413D69C61A3F121B00DE2CE1 /* LaunchScreen.xib */,
@@ -235,6 +241,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				413D69C01A3F121B00DE2CE1 /* ViewController.swift in Sources */,
+				41273AAA1A6BDF0300CC8F94 /* EditItemViewController.swift in Sources */,
+				41273AAC1A6BE9F600CC8F94 /* Book.swift in Sources */,
 				413D69BE1A3F121B00DE2CE1 /* AppDelegate.swift in Sources */,
 				41E6E58C1A6AB83A000A74F2 /* BookVault.xcdatamodeld in Sources */,
 				41FCD2511A3F23D70013BDE8 /* AddNewItemViewController.swift in Sources */,

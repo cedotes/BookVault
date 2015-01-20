@@ -76,6 +76,11 @@ class AddNewItemViewController: UIViewController {
             println("Could not save \(error), \(error?.userInfo)")
         }
     }
+    
+    //TODO: complete function
+    func containsBook(title: String, author: String) -> Bool{
+        return true
+    }
 
-        
+    
 }

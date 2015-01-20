@@ -9,8 +9,38 @@
 import UIKit
 import CoreData
 
-class ViewController: UITableViewController {
-    var books = [NSManagedObject]()
+class ViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+    
+    var books = [Book]()
+    
+    let managedContext:NSManagedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
+    var fetchedResultController: NSFetchedResultsController = NSFetchedResultsController()
+    
+    func getSortedFetchRequest() -> NSFetchRequest {
+        //fetch all objects of entity
+        let fetchRequest = NSFetchRequest(entityName:"Book")
+        
+        let sortDescriptor = NSSortDescriptor(key: "author", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        return fetchRequest
+    }
+    
+    func getFetchResultController() -> NSFetchedResultsController{
+        let fetchedResultController = NSFetchedResultsController(fetchRequest: getSortedFetchRequest(), managedObjectContext: managedContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        return fetchedResultController
+    }
+
+    func getFetchResults() -> [Book]? {
+        //parse fetched data
+        var error: NSError?
+        
+        let fetchedResults = managedContext.executeFetchRequest(getSortedFetchRequest(), error: &error) as [Book]?
+        books = fetchedResults!
+        
+        return fetchedResults
+    }
     
     // Function to prepopulate View
     func loadInitialData(){
@@ -24,6 +54,10 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        fetchedResultController = getFetchResultController()
+        fetchedResultController.delegate = self
+        fetchedResultController.performFetch(nil)
+        self.getFetchResults()
         
         // ONLY FOR DEVELOPMENT: if core data is too much populated, easily restore to just dummy data
         //  HOW TO USE: uncomment, run, comment, run again
@@ -40,14 +74,14 @@ class ViewController: UITableViewController {
     
     // set the correct number of rows for number of items in BookStore
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return books.count
+        let numberOfRowsInSection = fetchedResultController.sections?[section].numberOfObjects
+        return numberOfRowsInSection!
     }
     
     // Allow for custom cells and define them
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("customTableViewCell") as UITableViewCell
-        
+        var cell = tableView.dequeueReusableCellWithIdentifier("customTableViewCell", forIndexPath: indexPath) as UITableViewCell
         
         let book = books[indexPath.row]
         cell.textLabel?.text = book.valueForKey("title") as String?
@@ -59,25 +93,48 @@ class ViewController: UITableViewController {
         return cell
     }
     
+    //MARK: NSFetchedResultsController Delegate Functions
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        
+        switch type {
+        case NSFetchedResultsChangeType.Insert:
+            tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: UITableViewRowAnimation.Fade)
+            break
+        case NSFetchedResultsChangeType.Delete:
+            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: UITableViewRowAnimation.Fade)
+            break
+        case NSFetchedResultsChangeType.Move:
+            break
+        case NSFetchedResultsChangeType.Update:
+            break
+        default:
+            break
+        }
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController!) {
+        tableView.reloadData()
+    }
+
     // define swipe actions
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         if editingStyle == .Delete {
             // remove the deleted item from the model
-            let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-            let context:NSManagedObjectContext = appDel.managedObjectContext!
-            context.deleteObject(books[indexPath.row] as NSManagedObject)
+            managedContext.deleteObject(books[indexPath.row] as NSManagedObject)
             books.removeAtIndex(indexPath.row)
-            context.save(nil)
-            
-            // remove the deleted item from the `UITableView`
-            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            managedContext.save(nil)
         }
     }
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        let numberOfSections = fetchedResultController.sections?.count
+        return numberOfSections!
+    }
+    
         
-
+    //TODO
     @IBAction func editItemsInTableView(sender: UIBarButtonItem) {
-        
         // dummy function:
         let alertController = UIAlertController(title: "Alert", message:
             "clicked Edit", preferredStyle: UIAlertControllerStyle.Alert)
@@ -86,22 +143,26 @@ class ViewController: UITableViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         // TODO: Extract relevant data for the editViewController from the cell and save it for the next viewController
+        if segue.identifier == "editItemSegue" {
+            let cell = sender as UITableViewCell
+            let indexPath = tableView.indexPathForCell(cell)
+            
+                if let editController:EditItemViewController = segue.destinationViewController as? EditItemViewController{
+                    
+                    editController.book = books[indexPath!.row]
+                }
+            }
     }
     
     func saveBook(title: String, author: String) {
-        //get NSManagedObjectContext
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext!
-        
         //create new managed object and insert it into managed object context
         let entity =  NSEntityDescription.entityForName("Book",
             inManagedObjectContext: managedContext)
         
         let book = NSManagedObject(entity: entity!,
-            insertIntoManagedObjectContext:managedContext)
+            insertIntoManagedObjectContext:managedContext) as Book
         
         //Key-Value-Coding for attributes
         book.setValue(title, forKey: "title")
@@ -116,28 +177,9 @@ class ViewController: UITableViewController {
         books.append(book)
     }
     
-    
-    //TODO: complete function
-    func containsBook(title: String, author: String) -> Bool{
-        return true
-    }
-    
     //check if CoreData entity is empty
     func isEmpty() -> Bool{
-        //get NSManagedObjectContext
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext!
-        
-        //fetch all objects of entity
-        let fetchRequest = NSFetchRequest(entityName:"Book")
-        
-        //parse fetched data
-        var error: NSError?
-        
-        let fetchedResults =
-        managedContext.executeFetchRequest(fetchRequest,
-            error: &error) as [NSManagedObject]?
+        let fetchedResults = self.getFetchResults()
         
         if (fetchedResults?.count == 0){
             return true
@@ -148,50 +190,34 @@ class ViewController: UITableViewController {
     
     //delete
     func deleteAllBooks(){
-        //get NSManagedObjectContext
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext!
-        
-        //fetch all objects of entity
-        let fetchRequest = NSFetchRequest(entityName:"Book")
-        
-        var error: NSError?
-        
-        let fetchedResults = managedContext.executeFetchRequest(fetchRequest,
-            error: &error) as [NSManagedObject]!
+        let fetchedResults = self.getFetchResults()!
         
         for item in fetchedResults {
             managedContext.deleteObject(item)
         }
-        
         managedContext.save(nil)
-
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        //get NSManagedObjectContext
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext!
-        
-        //fetch all objects of entity
-        let fetchRequest = NSFetchRequest(entityName:"Book")
-        
-        //parse fetched data
-        var error: NSError?
-        
-        let fetchedResults =
-        managedContext.executeFetchRequest(fetchRequest,
-            error: &error) as [NSManagedObject]?
-        
+        let fetchedResults = self.getFetchResults()
+
         if let results = fetchedResults {
             books = results
         } else {
-            println("Could not fetch \(error), \(error!.userInfo)")
+            println("Could not fetch results.")
         }
     }
+    
+    /*
+    FINISH: sections for tableView
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
+        if let sections = fetchedResultController.sections as? [NSFetchedResultsSectionInfo] {
+        return sections[section].name
+        }
+        return nil
+    }
+    */
 }
 
