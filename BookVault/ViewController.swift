@@ -59,9 +59,6 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
         fetchedResultController.performFetch(nil)
         self.getFetchResults()
         
-        // ONLY FOR DEVELOPMENT: if core data is too much populated, easily restore to just dummy data
-        //  HOW TO USE: uncomment, run, comment, run again
-        //self.deleteAllBooks()
         if (self.isEmpty()){
             loadInitialData()
         }
@@ -186,16 +183,6 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
         }else{
             return false
         }
-    }
-    
-    //delete
-    func deleteAllBooks(){
-        let fetchedResults = self.getFetchResults()!
-        
-        for item in fetchedResults {
-            managedContext.deleteObject(item)
-        }
-        managedContext.save(nil)
     }
     
     override func viewWillAppear(animated: Bool) {

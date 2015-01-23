@@ -1,8 +1,8 @@
 //
-//  Book.swift
+//  BookVault.swift
 //  BookVault
 //
-//  Created by Caroline on 18.01.15.
+//  Created by Caroline on 20.01.15.
 //  Copyright (c) 2015 David Gollasch, Caroline Rausch. All rights reserved.
 //
 

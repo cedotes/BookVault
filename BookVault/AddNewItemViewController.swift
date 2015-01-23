@@ -54,26 +54,47 @@ class AddNewItemViewController: UIViewController {
     // DUPLICATE FUNCTION
     // TODO: check how to access function in root viewController
     func saveBook(title: String, author: String) {
-        //get NSManagedObjectContext
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         
-        let managedContext = appDelegate.managedObjectContext!
-        
-        //create new managed object and insert it into managed object context
-        let entity =  NSEntityDescription.entityForName("Book",
-            inManagedObjectContext: managedContext)
-        
-        let book = NSManagedObject(entity: entity!,
-            insertIntoManagedObjectContext:managedContext)
-        
-        //Key-Value-Coding for attributes
-        book.setValue(title, forKey: "title")
-        book.setValue(author, forKey: "author")
-        
-        //commit changes by saving + error handling
-        var error: NSError?
-        if !managedContext.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
+        // if textFields are empty -> alert
+        if(newTitle.text != "" && newAuthor.text != "") {
+            //get NSManagedObjectContext
+            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            
+            let managedContext = appDelegate.managedObjectContext!
+            
+            //TODO: check if entry already exists
+            // first test for title, then for author; if not existent, create new entry
+            
+            
+            //create new managed object and insert it into managed object context
+            let entity =  NSEntityDescription.entityForName("Book",
+                inManagedObjectContext: managedContext)
+            
+            let book = NSManagedObject(entity: entity!,
+                insertIntoManagedObjectContext:managedContext)
+            
+            //Key-Value-Coding for attributes
+            book.setValue(title, forKey: "title")
+            book.setValue(author, forKey: "author")
+            
+            //commit changes by saving + error handling
+            var error: NSError?
+            if !managedContext.save(&error) {
+                println("Could not save \(error), \(error?.userInfo)")
+            }
+        }else{
+            var msg = ""
+            if (newTitle.text == ""){
+                msg = "Title field is empty. Please enter a title."
+            }else{
+                msg = "Author field is empty. Please enter an author."
+            }
+            let alertController = UIAlertController(title: "Alert", message:
+                msg, preferredStyle: UIAlertControllerStyle.Alert)
+
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
         }
     }
     
