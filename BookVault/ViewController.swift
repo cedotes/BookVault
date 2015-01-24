@@ -44,8 +44,8 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
     
     // Function to prepopulate View
     func loadInitialData(){
-        self.saveBook("Test Book", author: "By Me")
-        self.saveBook("Another Book", author: "By Someone Else")
+        self.saveBook("Test Book", author: "By Me", owned: true)
+        self.saveBook("Another Book", author: "By Someone Else", owned: false)
         
         self.tableView.reloadData()
     }
@@ -155,7 +155,7 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
         }
     }
     
-    func saveBook(title: String, author: String) {
+    func saveBook(title: String, author: String, owned: Bool) {
         //create new managed object and insert it into managed object context
         let entity =  NSEntityDescription.entityForName("Book",
             inManagedObjectContext: managedContext)
@@ -166,6 +166,7 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
         //Key-Value-Coding for attributes
         book.setValue(title, forKey: "title")
         book.setValue(author, forKey: "author")
+        book.setValue(owned, forKey: "owned")
         
         //commit changes by saving + error handling
         var error: NSError?
