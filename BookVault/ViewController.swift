@@ -151,6 +151,10 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
                     editController.book = books[indexPath!.row]
                 }
             }
+        else if segue.identifier == "newItemSegue" {
+            let newItemController:AddNewItemViewController = segue.destinationViewController as AddNewItemViewController
+            newItemController.managedContextOfNewItemVC = managedContext
+        }
     }
     
     func saveBook(title: String, author: String) {

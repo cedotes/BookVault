@@ -14,6 +14,8 @@ class AddNewItemViewController: UIViewController {
     @IBOutlet weak var newTitle: UITextField!
     @IBOutlet weak var newAuthor: UITextField!
     
+    var managedContextOfNewItemVC:NSManagedObjectContext? = nil
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         // Save input data for storage in ViewController
         if segue.identifier == "dismissAndSave" {
@@ -64,23 +66,31 @@ class AddNewItemViewController: UIViewController {
             
             //TODO: check if entry already exists
             // first test for title, then for author; if not existent, create new entry
-            
-            
-            //create new managed object and insert it into managed object context
-            let entity =  NSEntityDescription.entityForName("Book",
-                inManagedObjectContext: managedContext)
-            
-            let book = NSManagedObject(entity: entity!,
-                insertIntoManagedObjectContext:managedContext)
-            
-            //Key-Value-Coding for attributes
-            book.setValue(title, forKey: "title")
-            book.setValue(author, forKey: "author")
-            
-            //commit changes by saving + error handling
-            var error: NSError?
-            if !managedContext.save(&error) {
-                println("Could not save \(error), \(error?.userInfo)")
+            var books = [Book]()
+            if (self.containsBook(newTitle.text, author: newAuthor.text)){
+                let alertController = UIAlertController(title: "Alert", message:
+                    "Book entry with identical title and author already exits", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
+            }else{
+                //create new managed object and insert it into managed object context
+                let entity =  NSEntityDescription.entityForName("Book",
+                    inManagedObjectContext: managedContext)
+                
+                let book = NSManagedObject(entity: entity!,
+                    insertIntoManagedObjectContext:managedContext)
+                
+                //Key-Value-Coding for attributes
+                book.setValue(title, forKey: "title")
+                book.setValue(author, forKey: "author")
+                
+                //commit changes by saving + error handling
+                var error: NSError?
+                if !managedContext.save(&error) {
+                    println("Could not save \(error), \(error?.userInfo)")
+                }
             }
         }else{
             var msg = ""
@@ -100,7 +110,25 @@ class AddNewItemViewController: UIViewController {
     
     //TODO: complete function
     func containsBook(title: String, author: String) -> Bool{
-        return true
+        // load with:
+        
+        var fetchRequest = NSFetchRequest(entityName: "Book")
+        fetchRequest.predicate = NSPredicate(format: "title = %@", newTitle.text!)
+        
+        let countOfDuplicateItemsWithSameTitle = managedContextOfNewItemVC!.countForFetchRequest(fetchRequest, error: nil)
+        
+        if(countOfDuplicateItemsWithSameTitle > 0){
+            fetchRequest.predicate = NSPredicate(format: "author = %@", newAuthor.text!)
+            
+            let countOfDuplicateItemsWithSameAuthor = managedContextOfNewItemVC!.countForFetchRequest(fetchRequest, error: nil)
+            if(countOfDuplicateItemsWithSameAuthor > 0){
+                return true
+            }else{
+                return false
+            }
+        }else{
+            return false
+        }
     }
 
     
