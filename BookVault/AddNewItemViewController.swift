@@ -69,7 +69,7 @@ class AddNewItemViewController: UIViewController {
             }else{
                 //create new managed object and insert it into managed object context
                 let entity =  NSEntityDescription.entityForName("Book",
-                    inManagedObjectContext: managedContextOfNewItemVC)
+                    inManagedObjectContext: managedContextOfNewItemVC!)
                 
                 let book = NSManagedObject(entity: entity!,
                     insertIntoManagedObjectContext:managedContextOfNewItemVC)
@@ -80,7 +80,7 @@ class AddNewItemViewController: UIViewController {
                 
                 //commit changes by saving + error handling
                 var error: NSError?
-                if !managedContext.save(&error) {
+                if !managedContextOfNewItemVC!.save(&error) {
                     println("Could not save \(error), \(error?.userInfo)")
                 }
             }
