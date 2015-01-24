@@ -22,12 +22,12 @@ class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        fetchedResultController = getFetchResultController()
+        fetchedResultController.delegate = self
+        fetchedResultController.performFetch(nil)
+        self.getFetchResults()
         
-        
-        // ONLY FOR DEVELOPMENT: if core data is too much populated, easily restore to just dummy data
-        //  HOW TO USE: uncomment, run, comment, run again
-        //self.deleteAllBooks()
         if (self.isEmpty()){
             loadInitialData()
         }
@@ -38,7 +38,7 @@ class ViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // set the correct number of rows for number of items in BookStore
+    // Set the correct number of rows for number of items in BookStore
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return books.count
     }
@@ -86,8 +86,21 @@ class ViewController: UITableViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // TODO: Extract relevant data for the editViewController from the cell and save it for the next viewController
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "editItemSegue" {
+            let cell = sender as UITableViewCell
+            let indexPath = tableView.indexPathForCell(cell)
+            
+                if let editController:EditItemViewController = segue.destinationViewController as? EditItemViewController{
+                    
+                    editController.book = books[indexPath!.row]
+                }
+            }
+        else if segue.identifier == "newItemSegue" {
+            let newItemController:AddNewItemViewController = segue.destinationViewController as AddNewItemViewController
+            newItemController.managedContextOfNewItemVC = managedContext
+        }
     }
     
     func saveBook(title: String, author: String) {
@@ -144,29 +157,6 @@ class ViewController: UITableViewController {
         }else{
             return false
         }
-    }
-    
-    //delete
-    func deleteAllBooks(){
-        //get NSManagedObjectContext
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext!
-        
-        //fetch all objects of entity
-        let fetchRequest = NSFetchRequest(entityName:"Book")
-        
-        var error: NSError?
-        
-        let fetchedResults = managedContext.executeFetchRequest(fetchRequest,
-            error: &error) as [NSManagedObject]!
-        
-        for item in fetchedResults {
-            managedContext.deleteObject(item)
-        }
-        
-        managedContext.save(nil)
-
     }
     
     override func viewWillAppear(animated: Bool) {
