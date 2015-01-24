@@ -52,8 +52,7 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
+
         fetchedResultController = getFetchResultController()
         fetchedResultController.delegate = self
         fetchedResultController.performFetch(nil)
@@ -69,7 +68,7 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
         // Dispose of any resources that can be recreated.
     }
     
-    // set the correct number of rows for number of items in BookStore
+    // Set the correct number of rows for number of items in BookStore
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let numberOfRowsInSection = fetchedResultController.sections?[section].numberOfObjects
         return numberOfRowsInSection!
@@ -141,7 +140,6 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        // TODO: Extract relevant data for the editViewController from the cell and save it for the next viewController
         if segue.identifier == "editItemSegue" {
             let cell = sender as UITableViewCell
             let indexPath = tableView.indexPathForCell(cell)

@@ -53,17 +53,9 @@ class AddNewItemViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // DUPLICATE FUNCTION
-    // TODO: check how to access function in root viewController
     func saveBook(title: String, author: String) {
-        
         // if textFields are empty -> alert
         if(newTitle.text != "" && newAuthor.text != "") {
-            //get NSManagedObjectContext
-            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-            
-            let managedContext = appDelegate.managedObjectContext!
-            
             //TODO: check if entry already exists
             // first test for title, then for author; if not existent, create new entry
             var books = [Book]()
@@ -77,10 +69,10 @@ class AddNewItemViewController: UIViewController {
             }else{
                 //create new managed object and insert it into managed object context
                 let entity =  NSEntityDescription.entityForName("Book",
-                    inManagedObjectContext: managedContext)
+                    inManagedObjectContext: managedContextOfNewItemVC)
                 
                 let book = NSManagedObject(entity: entity!,
-                    insertIntoManagedObjectContext:managedContext)
+                    insertIntoManagedObjectContext:managedContextOfNewItemVC)
                 
                 //Key-Value-Coding for attributes
                 book.setValue(title, forKey: "title")
@@ -107,11 +99,8 @@ class AddNewItemViewController: UIViewController {
             self.presentViewController(alertController, animated: true, completion: nil)
         }
     }
-    
-    //TODO: complete function
+
     func containsBook(title: String, author: String) -> Bool{
-        // load with:
-        
         var fetchRequest = NSFetchRequest(entityName: "Book")
         fetchRequest.predicate = NSPredicate(format: "title = %@", newTitle.text!)
         
