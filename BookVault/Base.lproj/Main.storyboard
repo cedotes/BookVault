@@ -202,6 +202,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bookIsOwned" destination="2HL-ZI-SSn" id="PnP-cX-ieL"/>
                         <outlet property="newAuthor" destination="abn-x8-rZ8" id="SOX-La-p2b"/>
                         <outlet property="newTitle" destination="siT-8p-0m7" id="QAt-1W-iHY"/>
                     </connections>
@@ -358,6 +359,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="authorField" destination="uZk-on-jCG" id="OFw-4K-LMz"/>
+                        <outlet property="bookIsOwned" destination="Lrn-yC-5FI" id="Gsk-4Y-BDD"/>
                         <outlet property="titleField" destination="wTI-US-ES7" id="sXo-IP-NLK"/>
                     </connections>
                 </viewController>
@@ -377,6 +379,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ZNc-gp-ZiJ"/>
+        <segue reference="w5M-X5-No6"/>
     </inferredMetricsTieBreakers>
 </document>
