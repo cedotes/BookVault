@@ -13,13 +13,14 @@ class AddNewItemViewController: UIViewController {
     
     @IBOutlet weak var newTitle: UITextField!
     @IBOutlet weak var newAuthor: UITextField!
+    @IBOutlet weak var bookIsOwned: UISwitch!
     
     var managedContextOfNewItemVC:NSManagedObjectContext? = nil
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         // Save input data for storage in ViewController
         if segue.identifier == "dismissAndSave" {
-            self.saveBook(newTitle.text, author: newAuthor.text)
+            self.saveBook(newTitle.text, author: newAuthor.text, owned: bookIsOwned.on)
         }
     }
     
@@ -53,10 +54,9 @@ class AddNewItemViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func saveBook(title: String, author: String) {
+    func saveBook(title: String, author: String, owned: Bool) {
         // if textFields are empty -> alert
         if(newTitle.text != "" && newAuthor.text != "") {
-            //TODO: check if entry already exists
             // first test for title, then for author; if not existent, create new entry
             var books = [Book]()
             if (self.containsBook(newTitle.text, author: newAuthor.text)){
@@ -77,6 +77,7 @@ class AddNewItemViewController: UIViewController {
                 //Key-Value-Coding for attributes
                 book.setValue(title, forKey: "title")
                 book.setValue(author, forKey: "author")
+                book.setValue(owned, forKey: "owned")
                 
                 //commit changes by saving + error handling
                 var error: NSError?
