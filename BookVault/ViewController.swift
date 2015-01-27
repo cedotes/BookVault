@@ -177,7 +177,8 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
         
         if editingStyle == .Delete {
             // remove the deleted item from the model
-            managedContext.deleteObject(books[indexPath.row] as NSManagedObject)
+            let fetchedObject = fetchedResultController.objectAtIndexPath(indexPath) as Book
+            managedContext.deleteObject(fetchedObject as NSManagedObject)
             books.removeAtIndex(indexPath.row)
             managedContext.save(nil)
         }
