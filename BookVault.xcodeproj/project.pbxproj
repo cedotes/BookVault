@@ -16,6 +16,7 @@
 		413D69D41A3F121B00DE2CE1 /* BookVaultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413D69D31A3F121B00DE2CE1 /* BookVaultTests.swift */; };
 		413E5CD41A72665500E237A3 /* noCover.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 413E5CD31A72665500E237A3 /* noCover.jpg */; };
 		413E5CD61A73D12100E237A3 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413E5CD51A73D12100E237A3 /* Book.swift */; };
+		41928EA71A7AB52F00DA484A /* FetchControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41928EA61A7AB52F00DA484A /* FetchControllerDelegate.swift */; };
 		41E6E58C1A6AB83A000A74F2 /* BookVault.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41E6E58A1A6AB83A000A74F2 /* BookVault.xcdatamodeld */; };
 		41F27F311A404AE3007ED2B4 /* camera-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 41F27F301A404AE3007ED2B4 /* camera-01.png */; };
 		41FCD24F1A3F21360013BDE8 /* cover150x250.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 41FCD24E1A3F21360013BDE8 /* cover150x250.jpeg */; };
@@ -47,6 +48,7 @@
 		413E5CD31A72665500E237A3 /* noCover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = noCover.jpg; path = Images.xcassets/noCover.jpg; sourceTree = "<group>"; };
 		413E5CD51A73D12100E237A3 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		413E5CD71A73D48500E237A3 /* BookVault 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BookVault 2.xcdatamodel"; sourceTree = "<group>"; };
+		41928EA61A7AB52F00DA484A /* FetchControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchControllerDelegate.swift; sourceTree = "<group>"; };
 		41E6E58B1A6AB83A000A74F2 /* BookVault.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookVault.xcdatamodel; sourceTree = "<group>"; };
 		41F27F301A404AE3007ED2B4 /* camera-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-01.png"; sourceTree = "<group>"; };
 		41FCD24E1A3F21360013BDE8 /* cover150x250.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cover150x250.jpeg; path = Images.xcassets/cover150x250.jpeg; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				41F27F321A404AF7007ED2B4 /* pictures */,
 				413D69BD1A3F121B00DE2CE1 /* AppDelegate.swift */,
 				413D69BF1A3F121B00DE2CE1 /* ViewController.swift */,
+				41928EA61A7AB52F00DA484A /* FetchControllerDelegate.swift */,
 				41FCD2501A3F23D70013BDE8 /* AddNewItemViewController.swift */,
 				41273AA91A6BDF0300CC8F94 /* EditItemViewController.swift */,
 				413D69C11A3F121B00DE2CE1 /* Main.storyboard */,
@@ -245,6 +248,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41928EA71A7AB52F00DA484A /* FetchControllerDelegate.swift in Sources */,
 				413E5CD61A73D12100E237A3 /* Book.swift in Sources */,
 				413D69C01A3F121B00DE2CE1 /* ViewController.swift in Sources */,
 				41273AAA1A6BDF0300CC8F94 /* EditItemViewController.swift in Sources */,
