@@ -13,12 +13,33 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     
     var books = [Book]()
     
+    @IBOutlet private var editBarButtonItem: UIBarButtonItem!
+    @IBOutlet private var doneBarButtonItem: UIBarButtonItem!
+
+
     let managedContext:NSManagedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
     var fetchedResultController: NSFetchedResultsController = NSFetchedResultsController()
     
     // ========================================
     // MARK: Core Data Functions
     // ========================================
+    private func configureCell(cell: UITableViewCell, book: Book) {
+        cell.textLabel?.text = book.title
+        cell.detailTextLabel?.text = book.valueForKey("author") as String?
+        
+        var imageName = UIImage(named: "cover150x250.jpeg")
+        cell.imageView?.image = imageName
+    }
+    
+    private lazy var fetchControllerDelegate: FetchControllerDelegate = {        
+        let delegate = FetchControllerDelegate(tableView: self.tableView)
+        delegate.onUpdate = {
+            (cell: UITableViewCell, object: AnyObject) in
+            self.configureCell(cell, book: object as Book)
+        }
+        
+        return delegate
+        }()
     
     func getSortedFetchRequest() -> NSFetchRequest {
         //fetch all objects of entity
@@ -51,6 +72,20 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     // MARK: View methods
     // ========================================
     
+    // MARK: View lifecycle
+    
+    override func setEditing(editing: Bool, animated: Bool)  {
+        super.setEditing(editing, animated: animated)
+        
+        navigationItem.leftBarButtonItem = editing ? doneBarButtonItem : editBarButtonItem
+    }
+    
+    // MARK: User interaction
+    
+    @IBAction func toggleEditing() {
+        setEditing(!editing, animated: true)
+    }
+    
     // Function to prepopulate View
     func loadInitialData(){
         self.saveBook("Test Book", author: "By Me", owned: true)
@@ -61,9 +96,9 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         fetchedResultController = getFetchResultController()
-        fetchedResultController.delegate = self
+        fetchedResultController.delegate = self.fetchControllerDelegate
         fetchedResultController.performFetch(nil)
         self.getFetchResults()
         
@@ -149,28 +184,6 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     // ========================================
     //MARK: NSFetchedResultsController Delegate Functions
     // ========================================
-    
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        
-        switch type {
-        case NSFetchedResultsChangeType.Insert:
-            tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: UITableViewRowAnimation.Fade)
-            break
-        case NSFetchedResultsChangeType.Delete:
-            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: UITableViewRowAnimation.Fade)
-            break
-        case NSFetchedResultsChangeType.Move:
-            break
-        case NSFetchedResultsChangeType.Update:
-            break
-        default:
-            break
-        }
-    }
-    
-    func controllerDidChangeContent(controller: NSFetchedResultsController!) {
-        tableView.reloadData()
-    }
 
     // define swipe actions
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -219,16 +232,6 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
         }else{
             return false
         }
-    }
-    
-    //TODO
-    @IBAction func editItemsInTableView(sender: UIBarButtonItem) {
-        // dummy function:
-        let alertController = UIAlertController(title: "Alert", message:
-            "clicked Edit", preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
     }
 }
 

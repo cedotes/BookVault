@@ -46,9 +46,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Library" id="neV-gt-Jem">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="7hd-5g-vXY">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="73F-nW-yg1">
                             <connections>
-                                <action selector="editItemsInTableView:" destination="vXZ-lx-hvc" id="YCV-gU-uCL"/>
+                                <action selector="toggleEditing" destination="vXZ-lx-hvc" id="vOe-Yz-tpz"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="QeQ-e2-GKk">
@@ -58,8 +58,17 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="doneBarButtonItem" destination="mm2-0X-jHx" id="kKo-yG-erx"/>
+                        <outlet property="editBarButtonItem" destination="73F-nW-yg1" id="0Jh-TB-gGF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <barButtonItem systemItem="done" id="mm2-0X-jHx">
+                    <connections>
+                        <action selector="toggleEditing" destination="vXZ-lx-hvc" id="FDf-xO-TfV"/>
+                    </connections>
+                </barButtonItem>
             </objects>
             <point key="canvasLocation" x="586" y="319"/>
         </scene>
