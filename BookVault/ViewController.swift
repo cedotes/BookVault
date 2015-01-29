@@ -54,7 +54,6 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     
     func getFetchResultController() -> NSFetchedResultsController{
         let fetchedResultController = NSFetchedResultsController(fetchRequest: getSortedFetchRequest(), managedObjectContext: managedContext, sectionNameKeyPath: "owned", cacheName: nil)
-        //"sectionName"
         return fetchedResultController
     }
 
@@ -77,6 +76,8 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     override func setEditing(editing: Bool, animated: Bool)  {
         super.setEditing(editing, animated: animated)
         
+        self.numberOfSectionsInTableView(tableView)
+        
         navigationItem.leftBarButtonItem = editing ? doneBarButtonItem : editBarButtonItem
     }
     
@@ -84,6 +85,10 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     
     @IBAction func toggleEditing() {
         setEditing(!editing, animated: true)
+        
+        if ((doneBarButtonItem) != nil){
+            tableView.reloadData()
+        }
     }
     
     // Function to prepopulate View
@@ -125,7 +130,7 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     
     // get number of sections
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        let numberOfSections = fetchedResultController.sections?.count
+        var numberOfSections = fetchedResultController.sections?.count
         return numberOfSections!
     }
     
@@ -163,6 +168,35 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
         }
         return nil
     }
+    
+    override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        if sourceIndexPath == destinationIndexPath {
+            return
+        }
+        
+        fetchControllerDelegate.ignoreNextUpdates = true
+        let book = fetchedResultController.objectAtIndexPath(sourceIndexPath) as Book
+        
+        if sourceIndexPath.section != destinationIndexPath.section {
+            
+            if (destinationIndexPath.section == 1){
+                book.owned = true
+            } else{
+                book.owned = false
+            }
+            
+            // Update cell
+            NSOperationQueue.mainQueue().addOperationWithBlock { // Table view is in inconsistent state, gotta wait
+                if let cell = tableView.cellForRowAtIndexPath(destinationIndexPath) {
+                    self.configureCell(cell, book: book)
+                }
+            }
+        }
+        
+        // Save
+        book.managedObjectContext!.save(nil)
+    }
+
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "editItemSegue" {
