@@ -13,12 +13,33 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     
     var books = [Book]()
     
+    @IBOutlet private var editBarButtonItem: UIBarButtonItem!
+    @IBOutlet private var doneBarButtonItem: UIBarButtonItem!
+
+
     let managedContext:NSManagedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
     var fetchedResultController: NSFetchedResultsController = NSFetchedResultsController()
     
     // ========================================
     // MARK: Core Data Functions
     // ========================================
+    private func configureCell(cell: UITableViewCell, book: Book) {
+        cell.textLabel?.text = book.title
+        cell.detailTextLabel?.text = book.valueForKey("author") as String?
+        
+        var imageName = UIImage(named: "cover150x250.jpeg")
+        cell.imageView?.image = imageName
+    }
+    
+    private lazy var fetchControllerDelegate: FetchControllerDelegate = {        
+        let delegate = FetchControllerDelegate(tableView: self.tableView)
+        delegate.onUpdate = {
+            (cell: UITableViewCell, object: AnyObject) in
+            self.configureCell(cell, book: object as Book)
+        }
+        
+        return delegate
+        }()
     
     func getSortedFetchRequest() -> NSFetchRequest {
         //fetch all objects of entity
@@ -33,7 +54,6 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     
     func getFetchResultController() -> NSFetchedResultsController{
         let fetchedResultController = NSFetchedResultsController(fetchRequest: getSortedFetchRequest(), managedObjectContext: managedContext, sectionNameKeyPath: "owned", cacheName: nil)
-        //"sectionName"
         return fetchedResultController
     }
 
@@ -51,6 +71,26 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     // MARK: View methods
     // ========================================
     
+    // MARK: View lifecycle
+    
+    override func setEditing(editing: Bool, animated: Bool)  {
+        super.setEditing(editing, animated: animated)
+        
+        self.numberOfSectionsInTableView(tableView)
+        
+        navigationItem.leftBarButtonItem = editing ? doneBarButtonItem : editBarButtonItem
+    }
+    
+    // MARK: User interaction
+    
+    @IBAction func toggleEditing() {
+        setEditing(!editing, animated: true)
+        
+        if ((doneBarButtonItem) != nil){
+            tableView.reloadData()
+        }
+    }
+    
     // Function to prepopulate View
     func loadInitialData(){
         self.saveBook("Test Book", author: "By Me", owned: true)
@@ -61,9 +101,9 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         fetchedResultController = getFetchResultController()
-        fetchedResultController.delegate = self
+        fetchedResultController.delegate = self.fetchControllerDelegate
         fetchedResultController.performFetch(nil)
         self.getFetchResults()
         
@@ -90,7 +130,7 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     
     // get number of sections
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        let numberOfSections = fetchedResultController.sections?.count
+        var numberOfSections = fetchedResultController.sections?.count
         return numberOfSections!
     }
     
@@ -129,6 +169,35 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
         return nil
     }
     
+    override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        if sourceIndexPath == destinationIndexPath {
+            return
+        }
+        
+        fetchControllerDelegate.ignoreNextUpdates = true
+        let book = fetchedResultController.objectAtIndexPath(sourceIndexPath) as Book
+        
+        if sourceIndexPath.section != destinationIndexPath.section {
+            
+            if (destinationIndexPath.section == 1){
+                book.owned = true
+            } else{
+                book.owned = false
+            }
+            
+            // Update cell
+            NSOperationQueue.mainQueue().addOperationWithBlock { // Table view is in inconsistent state, gotta wait
+                if let cell = tableView.cellForRowAtIndexPath(destinationIndexPath) {
+                    self.configureCell(cell, book: book)
+                }
+            }
+        }
+        
+        // Save
+        book.managedObjectContext!.save(nil)
+    }
+
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "editItemSegue" {
             let cell = sender as UITableViewCell
@@ -149,28 +218,6 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     // ========================================
     //MARK: NSFetchedResultsController Delegate Functions
     // ========================================
-    
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        
-        switch type {
-        case NSFetchedResultsChangeType.Insert:
-            tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: UITableViewRowAnimation.Fade)
-            break
-        case NSFetchedResultsChangeType.Delete:
-            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: UITableViewRowAnimation.Fade)
-            break
-        case NSFetchedResultsChangeType.Move:
-            break
-        case NSFetchedResultsChangeType.Update:
-            break
-        default:
-            break
-        }
-    }
-    
-    func controllerDidChangeContent(controller: NSFetchedResultsController!) {
-        tableView.reloadData()
-    }
 
     // define swipe actions
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -219,16 +266,6 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
         }else{
             return false
         }
-    }
-    
-    //TODO
-    @IBAction func editItemsInTableView(sender: UIBarButtonItem) {
-        // dummy function:
-        let alertController = UIAlertController(title: "Alert", message:
-            "clicked Edit", preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
     }
 }
 
