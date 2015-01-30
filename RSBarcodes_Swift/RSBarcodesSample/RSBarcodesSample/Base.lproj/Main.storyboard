@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C99d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jho-ea-TZv">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="khn-rS-LQR">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="Jho-ea-TZv" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yLa-zs-7vZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="zRg-bt-GP7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FOU-Vp-bzC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-685" y="222"/>
+        </scene>
+        <!--Barcode Reader View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="BarcodeReaderViewController" customModule="RSBarcodesSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZw-KE-djz">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="RWS-hR-ovU"/>
+                                    <constraint firstAttribute="width" constant="100" id="ytG-x7-3Xg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Close">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="close:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="9MY-mm-d7h"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3M-sF-FTl">
+                                <rect key="frame" x="500" y="0.0" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="hXg-QZ-2kt"/>
+                                    <constraint firstAttribute="height" constant="100" id="tTo-qA-mBl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Open">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="rLF-0l-4AA" kind="show" id="xdl-UA-dUI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7U-nj-ahi">
+                                <rect key="frame" x="0.0" y="500" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="DCu-5S-dvW"/>
+                                    <constraint firstAttribute="width" constant="100" id="bkL-kg-QRH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Toggle">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="toggle:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="WMm-ts-S8m"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="F3M-sF-FTl" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="2gu-Ca-5bn"/>
+                            <constraint firstItem="J7U-nj-ahi" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="2yx-Uc-QyE"/>
+                            <constraint firstAttribute="trailing" secondItem="F3M-sF-FTl" secondAttribute="trailing" id="HpU-IC-OjQ"/>
+                            <constraint firstAttribute="bottom" secondItem="J7U-nj-ahi" secondAttribute="bottom" id="XSk-95-Yna"/>
+                            <constraint firstItem="LZw-KE-djz" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="deL-4L-SLg"/>
+                            <constraint firstItem="LZw-KE-djz" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="icT-ed-Y0h"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="9HP-xD-nxc"/>
+                    <connections>
+                        <outlet property="toggle" destination="J7U-nj-ahi" id="zPG-LG-jnV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="61" y="222"/>
+        </scene>
+        <!--Barcode Display View Controller-->
+        <scene sceneID="d7V-Tz-Nfv">
+            <objects>
+                <viewController id="rLF-0l-4AA" customClass="BarcodeDisplayViewController" customModule="RSBarcodesSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MNP-zQ-Jub"/>
+                        <viewControllerLayoutGuide type="bottom" id="vgL-k5-esu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="i2i-UM-QRj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hdE-c8-1js">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hdE-c8-1js" firstAttribute="top" secondItem="MNP-zQ-Jub" secondAttribute="bottom" id="5K2-xc-bdb"/>
+                            <constraint firstItem="hdE-c8-1js" firstAttribute="leading" secondItem="i2i-UM-QRj" secondAttribute="leading" id="HgS-EK-kKs"/>
+                            <constraint firstAttribute="trailing" secondItem="hdE-c8-1js" secondAttribute="trailing" id="SuN-vL-SSo"/>
+                            <constraint firstItem="vgL-k5-esu" firstAttribute="top" secondItem="hdE-c8-1js" secondAttribute="bottom" id="acN-T6-pRB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="barcodeView" destination="hdE-c8-1js" id="P4H-7F-rC3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vAw-8N-EQH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="803" y="222"/>
+        </scene>
+    </scenes>
+</document>

@@ -20,6 +20,8 @@
 		41F27F311A404AE3007ED2B4 /* camera-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 41F27F301A404AE3007ED2B4 /* camera-01.png */; };
 		41FCD24F1A3F21360013BDE8 /* cover150x250.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 41FCD24E1A3F21360013BDE8 /* cover150x250.jpeg */; };
 		41FCD2511A3F23D70013BDE8 /* AddNewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FCD2501A3F23D70013BDE8 /* AddNewItemViewController.swift */; };
+		63BCD2051A7AF8850066B166 /* RSBarcodes.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 63BCD2011A7AF7F10066B166 /* RSBarcodes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63BCD2071A7AFB6F0066B166 /* ScanBarcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BCD2061A7AFB6F0066B166 /* ScanBarcodeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +32,35 @@
 			remoteGlobalIDString = 413D69B71A3F121B00DE2CE1;
 			remoteInfo = BookVault;
 		};
+		63BCD2001A7AF7F10066B166 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63BCD1FC1A7AF7F10066B166 /* RSBarcodes.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D08336371A202E81004EE128;
+			remoteInfo = RSBarcodes;
+		};
+		63BCD2021A7AF8250066B166 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63BCD1FC1A7AF7F10066B166 /* RSBarcodes.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D08336361A202E81004EE128;
+			remoteInfo = RSBarcodes;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		63BCD2041A7AF8340066B166 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				63BCD2051A7AF8850066B166 /* RSBarcodes.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		41273AA91A6BDF0300CC8F94 /* EditItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +81,8 @@
 		41F27F301A404AE3007ED2B4 /* camera-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-01.png"; sourceTree = "<group>"; };
 		41FCD24E1A3F21360013BDE8 /* cover150x250.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cover150x250.jpeg; path = Images.xcassets/cover150x250.jpeg; sourceTree = "<group>"; };
 		41FCD2501A3F23D70013BDE8 /* AddNewItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewItemViewController.swift; sourceTree = "<group>"; };
+		63BCD1FC1A7AF7F10066B166 /* RSBarcodes.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RSBarcodes.xcodeproj; path = RSBarcodes_Swift/RSBarcodes.xcodeproj; sourceTree = "<group>"; };
+		63BCD2061A7AFB6F0066B166 /* ScanBarcodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanBarcodeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +106,7 @@
 		413D69AF1A3F121B00DE2CE1 = {
 			isa = PBXGroup;
 			children = (
+				63BCD1FC1A7AF7F10066B166 /* RSBarcodes.xcodeproj */,
 				413D69BA1A3F121B00DE2CE1 /* BookVault */,
 				413D69D01A3F121B00DE2CE1 /* BookVaultTests */,
 				413D69B91A3F121B00DE2CE1 /* Products */,
@@ -103,6 +136,7 @@
 				413D69C41A3F121B00DE2CE1 /* Images.xcassets */,
 				413D69C61A3F121B00DE2CE1 /* LaunchScreen.xib */,
 				413D69BB1A3F121B00DE2CE1 /* Supporting Files */,
+				63BCD2061A7AFB6F0066B166 /* ScanBarcodeViewController.swift */,
 			);
 			path = BookVault;
 			sourceTree = "<group>";
@@ -142,6 +176,14 @@
 			name = pictures;
 			sourceTree = "<group>";
 		};
+		63BCD1FD1A7AF7F10066B166 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				63BCD2011A7AF7F10066B166 /* RSBarcodes.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -152,10 +194,12 @@
 				413D69B41A3F121B00DE2CE1 /* Sources */,
 				413D69B51A3F121B00DE2CE1 /* Frameworks */,
 				413D69B61A3F121B00DE2CE1 /* Resources */,
+				63BCD2041A7AF8340066B166 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				63BCD2031A7AF8250066B166 /* PBXTargetDependency */,
 			);
 			name = BookVault;
 			productName = BookVault;
@@ -209,6 +253,12 @@
 			mainGroup = 413D69AF1A3F121B00DE2CE1;
 			productRefGroup = 413D69B91A3F121B00DE2CE1 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 63BCD1FD1A7AF7F10066B166 /* Products */;
+					ProjectRef = 63BCD1FC1A7AF7F10066B166 /* RSBarcodes.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				413D69B71A3F121B00DE2CE1 /* BookVault */,
@@ -216,6 +266,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		63BCD2011A7AF7F10066B166 /* RSBarcodes.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RSBarcodes.framework;
+			remoteRef = 63BCD2001A7AF7F10066B166 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		413D69B61A3F121B00DE2CE1 /* Resources */ = {
@@ -247,6 +307,7 @@
 			files = (
 				413E5CD61A73D12100E237A3 /* Book.swift in Sources */,
 				413D69C01A3F121B00DE2CE1 /* ViewController.swift in Sources */,
+				63BCD2071A7AFB6F0066B166 /* ScanBarcodeViewController.swift in Sources */,
 				41273AAA1A6BDF0300CC8F94 /* EditItemViewController.swift in Sources */,
 				413D69BE1A3F121B00DE2CE1 /* AppDelegate.swift in Sources */,
 				41E6E58C1A6AB83A000A74F2 /* BookVault.xcdatamodeld in Sources */,
@@ -269,6 +330,11 @@
 			isa = PBXTargetDependency;
 			target = 413D69B71A3F121B00DE2CE1 /* BookVault */;
 			targetProxy = 413D69CE1A3F121B00DE2CE1 /* PBXContainerItemProxy */;
+		};
+		63BCD2031A7AF8250066B166 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RSBarcodes;
+			targetProxy = 63BCD2021A7AF8250066B166 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
