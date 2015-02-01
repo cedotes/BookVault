@@ -12,6 +12,10 @@
 	<dict>
 		<key>0AAE27CDAC267368F51DF5B99C940E0E75A8C2C3</key>
 		<string>https://github.com/cedotes/BookVault.git</string>
+		<key>22754eea-fc93-e339-b032-c1f495b90c16++2896</key>
+		<string>http://gtm-oauth2.googlecode.com/svn/trunk/Source</string>
+		<key>b3aa69f0-f65c-a609-0a27-78855af037c1++2896</key>
+		<string>http://gtm-http-fetcher.googlecode.com/svn/trunk/Source</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>BookVault.xcodeproj</string>
@@ -19,6 +23,17 @@
 	<dict>
 		<key>0AAE27CDAC267368F51DF5B99C940E0E75A8C2C3</key>
 		<string>../..</string>
+		<key>22754eea-fc93-e339-b032-c1f495b90c16++2896</key>
+		<string>../../GTL/OAuth2</string>
+		<key>b3aa69f0-f65c-a609-0a27-78855af037c1++2896</key>
+		<string>../../GTL/HTTPFetcher</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>22754eea-fc93-e339-b032-c1f495b90c16++2896</key>
+		<string>http://gtm-oauth2.googlecode.com/svn</string>
+		<key>b3aa69f0-f65c-a609-0a27-78855af037c1++2896</key>
+		<string>http://gtm-http-fetcher.googlecode.com/svn</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/cedotes/BookVault.git</string>
@@ -35,6 +50,22 @@
 			<string>0AAE27CDAC267368F51DF5B99C940E0E75A8C2C3</string>
 			<key>IDESourceControlWCCName</key>
 			<string>BookVault</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>b3aa69f0-f65c-a609-0a27-78855af037c1++2896</string>
+			<key>IDESourceControlWCCName</key>
+			<string>HTTPFetcher</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>22754eea-fc93-e339-b032-c1f495b90c16++2896</string>
+			<key>IDESourceControlWCCName</key>
+			<string>OAuth2</string>
 		</dict>
 	</array>
 </dict>

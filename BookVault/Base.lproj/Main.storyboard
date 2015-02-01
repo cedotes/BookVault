@@ -60,7 +60,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="586" y="319"/>
+            <point key="canvasLocation" x="570" y="319"/>
         </scene>
         <!--Add New Item-->
         <scene sceneID="LtV-Kj-m3O">
@@ -174,7 +174,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xuQ-aD-wWF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1012" y="319"/>
+            <point key="canvasLocation" x="1132" y="-15"/>
         </scene>
         <!--Scan Barcode-->
         <scene sceneID="fXl-9t-wUU">
@@ -205,7 +205,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IJt-zX-spW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1433" y="319"/>
+            <point key="canvasLocation" x="1535" y="-15"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7zs-Pz-Tuq">
@@ -313,7 +313,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="55x-7G-isg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="586" y="1034"/>
+            <point key="canvasLocation" x="1132" y="680"/>
         </scene>
     </scenes>
     <resources>
@@ -327,7 +327,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="YmI-8f-v8q"/>
         <segue reference="ZNc-gp-ZiJ"/>
-        <segue reference="VOn-NT-Ah9"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -49,6 +49,7 @@ class AddNewItemViewController: UIViewController {
         let warning = "Want to load further information based on ISBN. Sorry, not yet implemented! Your input: " + newIsbn.text
         let alertController = UIAlertController(title: "Alert ISBN", message:
             warning, preferredStyle: UIAlertControllerStyle.Alert)
+        
         alertController.addAction(UIAlertAction(title: "Well...", style: UIAlertActionStyle.Default,handler: nil))
         
         self.presentViewController(alertController, animated: true, completion: nil)

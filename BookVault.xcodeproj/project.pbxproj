@@ -46,6 +46,34 @@
 			remoteGlobalIDString = D08336361A202E81004EE128;
 			remoteInfo = RSBarcodes;
 		};
+		63EE1FFD1A7E84FB00B46B31 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63EE1FF61A7E84FB00B46B31 /* GTL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4F38F6A60B66E91D00B24B81;
+			remoteInfo = GTLFramework;
+		};
+		63EE1FFF1A7E84FB00B46B31 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63EE1FF61A7E84FB00B46B31 /* GTL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4F12027C11A4CA2F00BEB470;
+			remoteInfo = GTLTouchStaticLib;
+		};
+		63EE20011A7E84FB00B46B31 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63EE1FF61A7E84FB00B46B31 /* GTL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4F12027D11A4CA2F00BEB470;
+			remoteInfo = GTLUnitTests;
+		};
+		63EE20031A7E84FB00B46B31 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63EE1FF61A7E84FB00B46B31 /* GTL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4F1AD9020B71603F00DC0485;
+			remoteInfo = DevelopmentTestTool;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -83,6 +111,7 @@
 		41FCD2501A3F23D70013BDE8 /* AddNewItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewItemViewController.swift; sourceTree = "<group>"; };
 		63BCD1FC1A7AF7F10066B166 /* RSBarcodes.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RSBarcodes.xcodeproj; path = RSBarcodes_Swift/RSBarcodes.xcodeproj; sourceTree = "<group>"; };
 		63BCD2061A7AFB6F0066B166 /* ScanBarcodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanBarcodeViewController.swift; sourceTree = "<group>"; };
+		63EE1FF61A7E84FB00B46B31 /* GTL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GTL.xcodeproj; path = GTL/GTL.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +135,7 @@
 		413D69AF1A3F121B00DE2CE1 = {
 			isa = PBXGroup;
 			children = (
+				63EE1FF61A7E84FB00B46B31 /* GTL.xcodeproj */,
 				63BCD1FC1A7AF7F10066B166 /* RSBarcodes.xcodeproj */,
 				413D69BA1A3F121B00DE2CE1 /* BookVault */,
 				413D69D01A3F121B00DE2CE1 /* BookVaultTests */,
@@ -184,6 +214,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		63EE1FF71A7E84FB00B46B31 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				63EE1FFE1A7E84FB00B46B31 /* GTL.framework */,
+				63EE20001A7E84FB00B46B31 /* libGTLTouchStaticLib.a */,
+				63EE20021A7E84FB00B46B31 /* GTLUnitTests.xctest */,
+				63EE20041A7E84FB00B46B31 /* DevelopmentTestTool */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -255,6 +296,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 63EE1FF71A7E84FB00B46B31 /* Products */;
+					ProjectRef = 63EE1FF61A7E84FB00B46B31 /* GTL.xcodeproj */;
+				},
+				{
 					ProductGroup = 63BCD1FD1A7AF7F10066B166 /* Products */;
 					ProjectRef = 63BCD1FC1A7AF7F10066B166 /* RSBarcodes.xcodeproj */;
 				},
@@ -273,6 +318,34 @@
 			fileType = wrapper.framework;
 			path = RSBarcodes.framework;
 			remoteRef = 63BCD2001A7AF7F10066B166 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		63EE1FFE1A7E84FB00B46B31 /* GTL.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GTL.framework;
+			remoteRef = 63EE1FFD1A7E84FB00B46B31 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		63EE20001A7E84FB00B46B31 /* libGTLTouchStaticLib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGTLTouchStaticLib.a;
+			remoteRef = 63EE1FFF1A7E84FB00B46B31 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		63EE20021A7E84FB00B46B31 /* GTLUnitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GTLUnitTests.xctest;
+			remoteRef = 63EE20011A7E84FB00B46B31 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		63EE20041A7E84FB00B46B31 /* DevelopmentTestTool */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = DevelopmentTestTool;
+			remoteRef = 63EE20031A7E84FB00B46B31 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -439,10 +512,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = BookVault/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -450,10 +527,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = BookVault/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
