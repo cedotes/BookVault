@@ -78,11 +78,16 @@ class AddNewItemViewController: UIViewController {
         //service.APIKey = "AIzaSyBIQ9S92Xzym2Guv11HhbSTN5XO55imRV8";
         
         publicVolumesTicket = self.service.executeQuery(query, completionHandler: { (ticket, object, error) -> Void in
-            self.publicVolumes = object as GTLBooksVolumes
+            self.publicVolumes = object as? GTLBooksVolumes
             self.publicVolumesFetchError = error
             self.publicVolumesTicket = nil
+            
+            self.updateFetchedDetails()
         })
         
+        updateFetchedDetails()
+        
+        /*
         if(self.publicVolumes == nil) {
             
             if(newIsbn.text == "3833833351") {
@@ -116,7 +121,33 @@ class AddNewItemViewController: UIViewController {
             warning, preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default,handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
-
+*/
+    }
+    
+    func updateFetchedDetails() {
+        if(self.publicVolumes != nil) {
+            var publicVolume : GTLBooksVolume = self.publicVolumes.itemAtIndex(0) as GTLBooksVolume;
+            var publicVolumeInfo : GTLBooksVolumeVolumeInfo = publicVolume.volumeInfo;
+            
+            if(!publicVolumeInfo.title.isEmpty) {
+                self.newTitle.text = publicVolumeInfo.title;
+            }
+            
+            if(!publicVolumeInfo.publishedDate.isEmpty) {
+                self.newYear.text = publicVolumeInfo.publishedDate;
+            }
+            
+            if(!publicVolumeInfo.authors.isEmpty) {
+                self.newAuthor.text = publicVolumeInfo.authors.description;
+            }
+            
+            if(!publicVolumeInfo.imageLinks.thumbnail.isEmpty) {
+                var coverUrl = publicVolumeInfo.imageLinks.thumbnail
+                let url = NSURL(string: coverUrl)
+                let data = NSData(contentsOfURL: url!)
+                newImage.image = UIImage(data: data!)
+            }
+        }
     }
     
     override func viewDidLoad() {
