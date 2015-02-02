@@ -168,8 +168,10 @@
                     <connections>
                         <outlet property="bookIsOwned" destination="2HL-ZI-SSn" id="PnP-cX-ieL"/>
                         <outlet property="newAuthor" destination="abn-x8-rZ8" id="SOX-La-p2b"/>
+                        <outlet property="newImage" destination="n2U-bi-GaS" id="sML-od-dvx"/>
                         <outlet property="newIsbn" destination="PVq-f5-EKJ" id="fe5-ng-Tsv"/>
                         <outlet property="newTitle" destination="siT-8p-0m7" id="QAt-1W-iHY"/>
+                        <outlet property="newYear" destination="jKK-I8-5WP" id="7SV-Lg-nQC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xuQ-aD-wWF" userLabel="First Responder" sceneMemberID="firstResponder"/>

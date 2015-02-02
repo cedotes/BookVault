@@ -14,9 +14,16 @@ class AddNewItemViewController: UIViewController {
     @IBOutlet weak var newTitle: UITextField!
     @IBOutlet weak var newAuthor: UITextField!
     @IBOutlet weak var newIsbn: UITextField!
+    @IBOutlet weak var newYear: UITextField!
+    @IBOutlet weak var newImage: UIImageView!
+    
     @IBOutlet weak var bookIsOwned: UISwitch!
     
     var managedContextOfNewItemVC:NSManagedObjectContext? = nil
+    var publicVolumes : GTLBooksVolumes! = nil
+    var publicVolumesFetchError : NSError! = nil
+    var publicVolumesTicket : GTLServiceTicket! = nil
+    var service : GTLServiceBooks! = nil
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         // Save input data for storage in ViewController
@@ -46,15 +53,71 @@ class AddNewItemViewController: UIViewController {
     }
     
     @IBAction func fetchInformationByIsbn(sender: UIButton) {
-        let warning = "Want to load further information based on ISBN. Sorry, not yet implemented! Your input: " + newIsbn.text
-        let alertController = UIAlertController(title: "Alert ISBN", message:
-            warning, preferredStyle: UIAlertControllerStyle.Alert)
+        let text = newIsbn.text;
         
-        alertController.addAction(UIAlertAction(title: "Well...", style: UIAlertActionStyle.Default,handler: nil))
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
+        // cancel fetching if no isbn has been entered
+        if(text == "") {
+            // give an alert
+            let warning = "Please enter an ISBN first!"
+            let alertController = UIAlertController(title: "Alert ISBN", message:
+                warning, preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default,handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
 
+            return;
+        }
+        
+        self.publicVolumes = nil;
+        self.publicVolumesFetchError = nil;
+        
+        let query = GTLQueryBooks.queryForVolumesListWithQ(text) as GTLQueryBooks;
+        query.shouldSkipAuthorization = true;
+        
+        service = GTLServiceBooks();
+        service.authorizer = nil;
+        //service.APIKey = "AIzaSyBIQ9S92Xzym2Guv11HhbSTN5XO55imRV8";
+        
+        publicVolumesTicket = self.service.executeQuery(query, completionHandler: { (ticket, object, error) -> Void in
+            self.publicVolumes = object as GTLBooksVolumes
+            self.publicVolumesFetchError = error
+            self.publicVolumesTicket = nil
+        })
+        
+        if(self.publicVolumes == nil) {
+            
+            if(newIsbn.text == "3833833351") {
+                newTitle.text = "Weber's Burger: Die besten Grillrezepte mit und ohne Fleisch (GU Weber Grillen)";
+                newAuthor.text = "Jamie Purviance";
+                newYear.text = "2013";
+                
+                let fileURL = NSBundle.mainBundle().URLForResource("cover1", withExtension: "jpg");
+                let beginImage = CIImage(contentsOfURL: fileURL);
+                let endImage = UIImage(CIImage: beginImage);
+                newImage.image = endImage;
+                
+                return;
+            }
+            
+            // give an alert
+            let warning = "The book cannot be found!"
+            let alertController = UIAlertController(title: "Sorry!", message:
+                warning, preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default,handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+            
+            return;
+        }
+        
+        var NumberOfResults = self.publicVolumes.totalItems
+        
+        // give an alert
+        let warning = "Google Books found " + NumberOfResults.description + " results."
+        let alertController = UIAlertController(title: "Success!", message:
+            warning, preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default,handler: nil))
+        self.presentViewController(alertController, animated: true, completion: nil)
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
