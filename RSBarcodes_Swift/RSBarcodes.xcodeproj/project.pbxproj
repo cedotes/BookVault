@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< HEAD
 		4156697E1A80F73D0045BDC0 /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = 4156697C1A80F73D0045BDC0 /* LICENSE.md */; };
 		4156697F1A80F73D0045BDC0 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 4156697D1A80F73D0045BDC0 /* README.md */; };
+=======
+>>>>>>> feature/scanFromCamera
 		D08336CA1A209AAB004EE128 /* RSCode39Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08336B91A209AAB004EE128 /* RSCode39Generator.swift */; };
 		D08336CB1A209AAB004EE128 /* RSCode39Mod43Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08336BA1A209AAB004EE128 /* RSCode39Mod43Generator.swift */; };
 		D08336CC1A209AAB004EE128 /* RSCode93Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08336BB1A209AAB004EE128 /* RSCode93Generator.swift */; };
@@ -28,6 +31,7 @@
 		D08336DA1A209AAB004EE128 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08336C91A209AAB004EE128 /* UIColorExtension.swift */; };
 /* End PBXBuildFile section */
 
+<<<<<<< HEAD
 /* Begin PBXContainerItemProxy section */
 		415669A01A80F79C0045BDC0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -78,6 +82,9 @@
 		4156697B1A80F73D0045BDC0 /* home-hero-swift-hero.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-hero-swift-hero.png"; sourceTree = "<group>"; };
 		4156697C1A80F73D0045BDC0 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		4156697D1A80F73D0045BDC0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+=======
+/* Begin PBXFileReference section */
+>>>>>>> feature/scanFromCamera
 		D08336371A202E81004EE128 /* RSBarcodes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RSBarcodes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D08336B81A209AA0004EE128 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = SOURCE_ROOT; };
 		D08336B91A209AAB004EE128 /* RSCode39Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RSCode39Generator.swift; path = Source/RSCode39Generator.swift; sourceTree = SOURCE_ROOT; };
@@ -110,6 +117,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+<<<<<<< HEAD
 		415669611A80F7320045BDC0 /* RSBarcodesSample */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +194,11 @@
 				415669591A80F7320045BDC0 /* RSBarcodes_Swift.podspec */,
 				415669661A80F7320045BDC0 /* RSBarcodesSample */,
 				415669791A80F7320045BDC0 /* Source */,
+=======
+		D083362D1A202E81004EE128 = {
+			isa = PBXGroup;
+			children = (
+>>>>>>> feature/scanFromCamera
 				D08336391A202E81004EE128 /* RSBarcodes */,
 				D08336381A202E81004EE128 /* Products */,
 			);
@@ -286,12 +299,15 @@
 			mainGroup = D083362D1A202E81004EE128;
 			productRefGroup = D08336381A202E81004EE128 /* Products */;
 			projectDirPath = "";
+<<<<<<< HEAD
 			projectReferences = (
 				{
 					ProductGroup = 415669851A80F79A0045BDC0 /* Products */;
 					ProjectRef = 415669621A80F7320045BDC0 /* RSBarcodesSample.xcodeproj */;
 				},
 			);
+=======
+>>>>>>> feature/scanFromCamera
 			projectRoot = "";
 			targets = (
 				D08336361A202E81004EE128 /* RSBarcodes */,
@@ -299,6 +315,7 @@
 		};
 /* End PBXProject section */
 
+<<<<<<< HEAD
 /* Begin PBXReferenceProxy section */
 		415669A11A80F79C0045BDC0 /* RSBarcodesSample.app */ = {
 			isa = PBXReferenceProxy;
@@ -316,6 +333,8 @@
 		};
 /* End PBXReferenceProxy section */
 
+=======
+>>>>>>> feature/scanFromCamera
 /* Begin PBXSourcesBuildPhase section */
 		D08336321A202E81004EE128 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -331,10 +350,15 @@
 				D08336CD1A209AAB004EE128 /* RSCode128Generator.swift in Sources */,
 				D08336CF1A209AAB004EE128 /* RSCodeLayer.swift in Sources */,
 				D08336D51A209AAB004EE128 /* RSITF14Generator.swift in Sources */,
+<<<<<<< HEAD
 				4156697E1A80F73D0045BDC0 /* LICENSE.md in Sources */,
 				D08336D01A209AAB004EE128 /* RSCodeReaderViewController.swift in Sources */,
 				D08336D11A209AAB004EE128 /* RSCornersLayer.swift in Sources */,
 				4156697F1A80F73D0045BDC0 /* README.md in Sources */,
+=======
+				D08336D01A209AAB004EE128 /* RSCodeReaderViewController.swift in Sources */,
+				D08336D11A209AAB004EE128 /* RSCornersLayer.swift in Sources */,
+>>>>>>> feature/scanFromCamera
 				D08336D81A209AAB004EE128 /* RSUPCEGenerator.swift in Sources */,
 				D08336D31A209AAB004EE128 /* RSExtendedCode39Generator.swift in Sources */,
 				D08336D21A209AAB004EE128 /* RSEANGenerator.swift in Sources */,
@@ -345,6 +369,7 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+<<<<<<< HEAD
 /* Begin PBXVariantGroup section */
 		4156695E1A80F7320045BDC0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -356,6 +381,8 @@
 		};
 /* End PBXVariantGroup section */
 
+=======
+>>>>>>> feature/scanFromCamera
 /* Begin XCBuildConfiguration section */
 		D083364B1A202E81004EE128 /* Debug */ = {
 			isa = XCBuildConfiguration;

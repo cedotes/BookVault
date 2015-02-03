@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< HEAD
 		415662B91A80F7040045BDC0 /* GTLCommon_Sources.m in Sources */ = {isa = PBXBuildFile; fileRef = 41565BD51A80F7030045BDC0 /* GTLCommon_Sources.m */; };
 		415662BA1A80F7040045BDC0 /* GTLDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 41565BD61A80F7030045BDC0 /* GTLDefines.h */; };
 		415662BB1A80F7040045BDC0 /* GTLNetworking_Sources.m in Sources */ = {isa = PBXBuildFile; fileRef = 41565BD71A80F7030045BDC0 /* GTLNetworking_Sources.m */; };
@@ -1696,6 +1697,8 @@
 		4156694F1A80F7050045BDC0 /* GTLTargetNamespace.h in Headers */ = {isa = PBXBuildFile; fileRef = 415662B51A80F7030045BDC0 /* GTLTargetNamespace.h */; };
 		415669501A80F7050045BDC0 /* GTLUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 415662B61A80F7030045BDC0 /* GTLUtilities.h */; };
 		415669511A80F7050045BDC0 /* GTLUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 415662B71A80F7030045BDC0 /* GTLUtilities.m */; };
+=======
+>>>>>>> feature/scanFromCamera
 		4F0C4FBC13CFA7E5007E5E92 /* GTLUploadParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F0C4FBA13CFA7E5007E5E92 /* GTLUploadParameters.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4F0C4FBD13CFA7E5007E5E92 /* GTLUploadParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C4FBB13CFA7E5007E5E92 /* GTLUploadParameters.m */; };
 		4F0C4FBE13CFA7E5007E5E92 /* GTLUploadParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C4FBB13CFA7E5007E5E92 /* GTLUploadParameters.m */; };
@@ -1895,6 +1898,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+<<<<<<< HEAD
 		415669A61A80F79C0045BDC0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 41565BDC1A80F7030045BDC0 /* GTMHTTPFetcher.xcodeproj */;
@@ -1930,6 +1934,8 @@
 			remoteGlobalIDString = 8DD76FA10486AA7600D96B5E;
 			remoteInfo = ServiceGenerator;
 		};
+=======
+>>>>>>> feature/scanFromCamera
 		4F1AD9040B71604300DC0485 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
@@ -1981,6 +1987,7 @@
 
 /* Begin PBXFileReference section */
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+<<<<<<< HEAD
 		41565BD51A80F7030045BDC0 /* GTLCommon_Sources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLCommon_Sources.m; sourceTree = "<group>"; };
 		41565BD61A80F7030045BDC0 /* GTLDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLDefines.h; sourceTree = "<group>"; };
 		41565BD71A80F7030045BDC0 /* GTLNetworking_Sources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLNetworking_Sources.m; sourceTree = "<group>"; };
@@ -3673,6 +3680,8 @@
 		415662B51A80F7030045BDC0 /* GTLTargetNamespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLTargetNamespace.h; sourceTree = "<group>"; };
 		415662B61A80F7030045BDC0 /* GTLUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLUtilities.h; sourceTree = "<group>"; };
 		415662B71A80F7030045BDC0 /* GTLUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLUtilities.m; sourceTree = "<group>"; };
+=======
+>>>>>>> feature/scanFromCamera
 		4F0C4FBA13CFA7E5007E5E92 /* GTLUploadParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTLUploadParameters.h; path = Objects/GTLUploadParameters.h; sourceTree = "<group>"; };
 		4F0C4FBB13CFA7E5007E5E92 /* GTLUploadParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTLUploadParameters.m; path = Objects/GTLUploadParameters.m; sourceTree = "<group>"; };
 		4F12027C11A4CA2F00BEB470 /* libGTLTouchStaticLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGTLTouchStaticLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3833,6 +3842,7 @@
 		089C166AFE841209C02AAC07 /* GoogleBundle */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				41565BD51A80F7030045BDC0 /* GTLCommon_Sources.m */,
 				41565BD61A80F7030045BDC0 /* GTLDefines.h */,
 				41565BD71A80F7030045BDC0 /* GTLNetworking_Sources.m */,
@@ -3845,6 +3855,8 @@
 				415662A61A80F7030045BDC0 /* Tests */,
 				415662AE1A80F7030045BDC0 /* Tools */,
 				415662B81A80F7030045BDC0 /* Utilities */,
+=======
+>>>>>>> feature/scanFromCamera
 				32C88E010371C26100C91783 /* GTL Source */,
 				4FCC7A1B11EFD9C80097924C /* Tests */,
 				4FA9C7410B72AB1600DA5920 /* Test Tool */,
@@ -3904,6 +3916,7 @@
 			name = "GTL Source";
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		41565BED1A80F7030045BDC0 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -6186,6 +6199,8 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+=======
+>>>>>>> feature/scanFromCamera
 		4F244248121E0A8D00FEE1DA /* Touch */ = {
 			isa = PBXGroup;
 			children = (
@@ -6399,6 +6414,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				415667E51A80F7050045BDC0 /* GTLStorageChannel.h in Headers */,
 				415664771A80F7040045BDC0 /* GTLCalendarEventDateTime.h in Headers */,
 				415668311A80F7050045BDC0 /* GTLYouTubeActivityContentDetailsSubscription.h in Headers */,
@@ -7244,6 +7260,34 @@
 				415664071A80F7040045BDC0 /* GTLBloggerPageviews.h in Headers */,
 				4156676F1A80F7040045BDC0 /* GTLSpectrumPawsInitResponse.h in Headers */,
 				415667EF1A80F7050045BDC0 /* GTLStorageObjects.h in Headers */,
+=======
+				4F3DE995119CCE49006926D1 /* GTLDefines.h in Headers */,
+				4F697FA7131C1A4100A5AB6A /* GTMOAuth2Authentication.h in Headers */,
+				4F697FA9131C1A4100A5AB6A /* GTMOAuth2SignIn.h in Headers */,
+				4F697FB7131C1A5800A5AB6A /* GTMOAuth2WindowController.h in Headers */,
+				4F698060131C1F1D00A5AB6A /* GTMGatherInputStream.h in Headers */,
+				4F698062131C1F1D00A5AB6A /* GTMHTTPFetcher.h in Headers */,
+				4F698064131C1F1D00A5AB6A /* GTMHTTPFetcherLogging.h in Headers */,
+				4F698066131C1F1D00A5AB6A /* GTMHTTPFetcherService.h in Headers */,
+				4F698068131C1F1D00A5AB6A /* GTMHTTPFetchHistory.h in Headers */,
+				4F69806A131C1F1D00A5AB6A /* GTMHTTPUploadFetcher.h in Headers */,
+				4F69806C131C1F1D00A5AB6A /* GTMMIMEDocument.h in Headers */,
+				4FDE223C13848173005AEFAA /* GTLFramework.h in Headers */,
+				4FDE223E13848173005AEFAA /* GTLJSONParser.h in Headers */,
+				4FDE224013848173005AEFAA /* GTLTargetNamespace.h in Headers */,
+				4FDE224113848173005AEFAA /* GTLUtilities.h in Headers */,
+				4FDE22611384818E005AEFAA /* GTLBatchQuery.h in Headers */,
+				4FDE22631384818E005AEFAA /* GTLBatchResult.h in Headers */,
+				4FDE22651384818E005AEFAA /* GTLDateTime.h in Headers */,
+				4FDE22671384818E005AEFAA /* GTLErrorObject.h in Headers */,
+				4FDE22691384818E005AEFAA /* GTLObject.h in Headers */,
+				4FDE226B1384818E005AEFAA /* GTLQuery.h in Headers */,
+				4FDE226D1384818E005AEFAA /* GTLRuntimeCommon.h in Headers */,
+				4FDE226F1384818E005AEFAA /* GTLService.h in Headers */,
+				4F0C4FBC13CFA7E5007E5E92 /* GTLUploadParameters.h in Headers */,
+				4F8DB61913FDAC160001DD6C /* GTMReadMonitorInputStream.h in Headers */,
+				4F934E671512712100C4EA34 /* GTLBase64.h in Headers */,
+>>>>>>> feature/scanFromCamera
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7340,6 +7384,7 @@
 			);
 			mainGroup = 089C166AFE841209C02AAC07 /* GoogleBundle */;
 			projectDirPath = "";
+<<<<<<< HEAD
 			projectReferences = (
 				{
 					ProductGroup = 4156698D1A80F79A0045BDC0 /* Products */;
@@ -7354,6 +7399,8 @@
 					ProjectRef = 415662AC1A80F7030045BDC0 /* ServiceGenerator.xcodeproj */;
 				},
 			);
+=======
+>>>>>>> feature/scanFromCamera
 			projectRoot = "";
 			targets = (
 				4F38F6A50B66E91D00B24B81 /* GTLFramework */,
@@ -7364,6 +7411,7 @@
 		};
 /* End PBXProject section */
 
+<<<<<<< HEAD
 /* Begin PBXReferenceProxy section */
 		415669A71A80F79C0045BDC0 /* libGTMHTTPFetcher.a */ = {
 			isa = PBXReferenceProxy;
@@ -7402,6 +7450,8 @@
 		};
 /* End PBXReferenceProxy section */
 
+=======
+>>>>>>> feature/scanFromCamera
 /* Begin PBXResourcesBuildPhase section */
 		4F14A9D80B1276B70072EBB8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
@@ -7437,6 +7487,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				415662E81A80F7040045BDC0 /* GTMOAuth2ViewTouch.xib in Resources */,
 				415669281A80F7050045BDC0 /* TaskBatch1.request.txt in Resources */,
 				415662E11A80F7040045BDC0 /* GTMOAuth2Framework-Info.plist in Resources */,
@@ -7472,6 +7523,9 @@
 				4156692D1A80F7050045BDC0 /* TaskBatchPage1b.response.txt in Resources */,
 				415669331A80F7050045BDC0 /* TaskError1.response.txt in Resources */,
 				415669381A80F7050045BDC0 /* TaskPage1c.request.txt in Resources */,
+=======
+				4F697FB6131C1A5800A5AB6A /* GTMOAuth2Window.xib in Resources */,
+>>>>>>> feature/scanFromCamera
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7606,6 +7660,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				415666A21A80F7040045BDC0 /* GTLOrkutCommunityPollComment.m in Sources */,
 				415664DA1A80F7040045BDC0 /* GTLComputeInstanceList.m in Sources */,
 				415668341A80F7050045BDC0 /* GTLYouTubeActivityContentDetailsUpload.m in Sources */,
@@ -8466,6 +8521,32 @@
 				415664501A80F7040045BDC0 /* GTLBooksVolumeannotation.m in Sources */,
 				415669221A80F7050045BDC0 /* GTLYouTubeAnalyticsConstants.m in Sources */,
 				415666741A80F7040045BDC0 /* GTLMirrorUserAction.m in Sources */,
+=======
+				4F697FA8131C1A4100A5AB6A /* GTMOAuth2Authentication.m in Sources */,
+				4F697FAA131C1A4100A5AB6A /* GTMOAuth2SignIn.m in Sources */,
+				4F697FB8131C1A5800A5AB6A /* GTMOAuth2WindowController.m in Sources */,
+				4F698061131C1F1D00A5AB6A /* GTMGatherInputStream.m in Sources */,
+				4F698063131C1F1D00A5AB6A /* GTMHTTPFetcher.m in Sources */,
+				4F698065131C1F1D00A5AB6A /* GTMHTTPFetcherLogging.m in Sources */,
+				4F698069131C1F1D00A5AB6A /* GTMHTTPFetchHistory.m in Sources */,
+				4F69806B131C1F1D00A5AB6A /* GTMHTTPUploadFetcher.m in Sources */,
+				4F69806D131C1F1D00A5AB6A /* GTMMIMEDocument.m in Sources */,
+				4F698090131C20DA00A5AB6A /* GTMHTTPFetcherService.m in Sources */,
+				4FDE223D13848173005AEFAA /* GTLFramework.m in Sources */,
+				4FDE223F13848173005AEFAA /* GTLJSONParser.m in Sources */,
+				4FDE224213848173005AEFAA /* GTLUtilities.m in Sources */,
+				4FDE22621384818E005AEFAA /* GTLBatchQuery.m in Sources */,
+				4FDE22641384818E005AEFAA /* GTLBatchResult.m in Sources */,
+				4FDE22661384818E005AEFAA /* GTLDateTime.m in Sources */,
+				4FDE22681384818E005AEFAA /* GTLErrorObject.m in Sources */,
+				4FDE226A1384818E005AEFAA /* GTLObject.m in Sources */,
+				4FDE226C1384818E005AEFAA /* GTLQuery.m in Sources */,
+				4FDE226E1384818E005AEFAA /* GTLRuntimeCommon.m in Sources */,
+				4FDE22701384818E005AEFAA /* GTLService.m in Sources */,
+				4F0C4FBD13CFA7E5007E5E92 /* GTLUploadParameters.m in Sources */,
+				4F8DB61A13FDAC160001DD6C /* GTMReadMonitorInputStream.m in Sources */,
+				4F934E681512712100C4EA34 /* GTLBase64.m in Sources */,
+>>>>>>> feature/scanFromCamera
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
