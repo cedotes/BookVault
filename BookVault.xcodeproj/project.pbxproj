@@ -31,6 +31,41 @@
 			remoteGlobalIDString = 413D69B71A3F121B00DE2CE1;
 			remoteInfo = BookVault;
 		};
+		415669931A80F79C0045BDC0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4156515C1A80F6580045BDC0 /* GTL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4F38F6A60B66E91D00B24B81;
+			remoteInfo = GTLFramework;
+		};
+		415669951A80F79C0045BDC0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4156515C1A80F6580045BDC0 /* GTL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4F12027C11A4CA2F00BEB470;
+			remoteInfo = GTLTouchStaticLib;
+		};
+		415669971A80F79C0045BDC0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4156515C1A80F6580045BDC0 /* GTL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4F12027D11A4CA2F00BEB470;
+			remoteInfo = GTLUnitTests;
+		};
+		415669991A80F79C0045BDC0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4156515C1A80F6580045BDC0 /* GTL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4F1AD9020B71603F00DC0485;
+			remoteInfo = DevelopmentTestTool;
+		};
+		4156699C1A80F79C0045BDC0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4156510C1A80F64C0045BDC0 /* RSBarcodes.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D08336371A202E81004EE128;
+			remoteInfo = RSBarcodes;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +83,8 @@
 		413E5CD31A72665500E237A3 /* noCover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = noCover.jpg; path = Images.xcassets/noCover.jpg; sourceTree = "<group>"; };
 		413E5CD51A73D12100E237A3 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		413E5CD71A73D48500E237A3 /* BookVault 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BookVault 2.xcdatamodel"; sourceTree = "<group>"; };
+		4156510C1A80F64C0045BDC0 /* RSBarcodes.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RSBarcodes.xcodeproj; path = RSBarcodes_Swift/RSBarcodes.xcodeproj; sourceTree = "<group>"; };
+		4156515C1A80F6580045BDC0 /* GTL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GTL.xcodeproj; path = GTL/GTL.xcodeproj; sourceTree = "<group>"; };
 		41928EA61A7AB52F00DA484A /* FetchControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchControllerDelegate.swift; sourceTree = "<group>"; };
 		41E6E58B1A6AB83A000A74F2 /* BookVault.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookVault.xcdatamodel; sourceTree = "<group>"; };
 		41F27F301A404AE3007ED2B4 /* camera-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-01.png"; sourceTree = "<group>"; };
@@ -76,6 +113,8 @@
 		413D69AF1A3F121B00DE2CE1 = {
 			isa = PBXGroup;
 			children = (
+				4156515C1A80F6580045BDC0 /* GTL.xcodeproj */,
+				4156510C1A80F64C0045BDC0 /* RSBarcodes.xcodeproj */,
 				413D69BA1A3F121B00DE2CE1 /* BookVault */,
 				413D69D01A3F121B00DE2CE1 /* BookVaultTests */,
 				413D69B91A3F121B00DE2CE1 /* Products */,
@@ -133,6 +172,25 @@
 				413D69D21A3F121B00DE2CE1 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		415669831A80F79A0045BDC0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4156699D1A80F79C0045BDC0 /* RSBarcodes.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		415669871A80F79A0045BDC0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				415669941A80F79C0045BDC0 /* GTL.framework */,
+				415669961A80F79C0045BDC0 /* libGTLTouchStaticLib.a */,
+				415669981A80F79C0045BDC0 /* GTLUnitTests.xctest */,
+				4156699A1A80F79C0045BDC0 /* DevelopmentTestTool */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		41F27F321A404AF7007ED2B4 /* pictures */ = {
@@ -213,6 +271,16 @@
 			mainGroup = 413D69AF1A3F121B00DE2CE1;
 			productRefGroup = 413D69B91A3F121B00DE2CE1 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 415669871A80F79A0045BDC0 /* Products */;
+					ProjectRef = 4156515C1A80F6580045BDC0 /* GTL.xcodeproj */;
+				},
+				{
+					ProductGroup = 415669831A80F79A0045BDC0 /* Products */;
+					ProjectRef = 4156510C1A80F64C0045BDC0 /* RSBarcodes.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				413D69B71A3F121B00DE2CE1 /* BookVault */,
@@ -220,6 +288,44 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		415669941A80F79C0045BDC0 /* GTL.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GTL.framework;
+			remoteRef = 415669931A80F79C0045BDC0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		415669961A80F79C0045BDC0 /* libGTLTouchStaticLib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGTLTouchStaticLib.a;
+			remoteRef = 415669951A80F79C0045BDC0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		415669981A80F79C0045BDC0 /* GTLUnitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GTLUnitTests.xctest;
+			remoteRef = 415669971A80F79C0045BDC0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4156699A1A80F79C0045BDC0 /* DevelopmentTestTool */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = DevelopmentTestTool;
+			remoteRef = 415669991A80F79C0045BDC0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4156699D1A80F79C0045BDC0 /* RSBarcodes.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RSBarcodes.framework;
+			remoteRef = 4156699C1A80F79C0045BDC0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		413D69B61A3F121B00DE2CE1 /* Resources */ = {
