@@ -13,7 +13,6 @@ class EditItemViewController: UIViewController {
 
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var authorField: UITextField!
-    @IBOutlet weak var bookIsOwned: UISwitch!
     
     var book: Book? = nil
     
@@ -22,20 +21,14 @@ class EditItemViewController: UIViewController {
         if book != nil {
             titleField.text = book?.title
             authorField.text = book?.author
-            bookIsOwned.on = book?.owned as Bool
         }
     }
     
-    // make keyboard disappear when touch somewhere else
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        self.view.endEditing(true)
-    }
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         // Save input data for storage in ViewController
         if segue.identifier == "dismissAndSave" {
             // Replace entry in CoreData
-            self.saveChangedBook(titleField.text, author: authorField.text, owned: bookIsOwned.on)
+            self.saveChangedBook(titleField.text, author: authorField.text)
         }
     }
 
@@ -52,7 +45,7 @@ class EditItemViewController: UIViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
-    func saveChangedBook(title: String, author: String, owned: Bool) {
+    func saveChangedBook(title: String, author: String) {
         //get NSManagedObjectContext
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         
@@ -66,7 +59,6 @@ class EditItemViewController: UIViewController {
         if book != nil {
             book?.setValue(titleField.text as String, forKey: "title")
             book?.setValue(authorField.text as String, forKey: "author")
-            book?.setValue(bookIsOwned.on, forKey: "owned")
         }else{
 
             let newBook = NSManagedObject(entity: entity!,
@@ -75,7 +67,6 @@ class EditItemViewController: UIViewController {
             //Key-Value-Coding for attributes
             newBook.setValue(title, forKey: "title")
             newBook.setValue(author, forKey: "author")
-            newBook.setValue(owned, forKey: "owned")
         
             //commit changes by saving + error handling
             var error: NSError?

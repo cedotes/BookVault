@@ -9,51 +9,26 @@
 import UIKit
 import CoreData
 
-class ViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
+class ViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     var books = [Book]()
     
-    @IBOutlet private var editBarButtonItem: UIBarButtonItem!
-    @IBOutlet private var doneBarButtonItem: UIBarButtonItem!
-
-
     let managedContext:NSManagedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
     var fetchedResultController: NSFetchedResultsController = NSFetchedResultsController()
-    
-    // ========================================
-    // MARK: Core Data Functions
-    // ========================================
-    private func configureCell(cell: UITableViewCell, book: Book) {
-        cell.textLabel?.text = book.title
-        cell.detailTextLabel?.text = book.valueForKey("author") as String?
-        
-        var imageName = UIImage(named: "cover150x250.jpeg")
-        cell.imageView?.image = imageName
-    }
-    
-    private lazy var fetchControllerDelegate: FetchControllerDelegate = {        
-        let delegate = FetchControllerDelegate(tableView: self.tableView)
-        delegate.onUpdate = {
-            (cell: UITableViewCell, object: AnyObject) in
-            self.configureCell(cell, book: object as Book)
-        }
-        
-        return delegate
-        }()
     
     func getSortedFetchRequest() -> NSFetchRequest {
         //fetch all objects of entity
         let fetchRequest = NSFetchRequest(entityName:"Book")
         
-        let sortDescriptorForAuthor = NSSortDescriptor(key: "author", ascending: true)
-        let sortDescriptorForOwnedStatus = NSSortDescriptor(key: "owned", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptorForOwnedStatus, sortDescriptorForAuthor]
+        let sortDescriptor = NSSortDescriptor(key: "author", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
         
         return fetchRequest
     }
     
     func getFetchResultController() -> NSFetchedResultsController{
-        let fetchedResultController = NSFetchedResultsController(fetchRequest: getSortedFetchRequest(), managedObjectContext: managedContext, sectionNameKeyPath: "owned", cacheName: nil)
+        let fetchedResultController = NSFetchedResultsController(fetchRequest: getSortedFetchRequest(), managedObjectContext: managedContext, sectionNameKeyPath: nil, cacheName: nil)
+        
         return fetchedResultController
     }
 
@@ -67,59 +42,24 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
         return fetchedResults
     }
     
-    // ========================================
-    // MARK: View methods
-    // ========================================
-    
-    // MARK: View lifecycle
-    
-    override func setEditing(editing: Bool, animated: Bool)  {
-        super.setEditing(editing, animated: animated)
-        
-        self.numberOfSectionsInTableView(tableView)
-        
-        navigationItem.leftBarButtonItem = editing ? doneBarButtonItem : editBarButtonItem
-    }
-    
-    // MARK: User interaction
-    
-    @IBAction func toggleEditing() {
-        setEditing(!editing, animated: true)
-        
-        if ((doneBarButtonItem) != nil){
-            tableView.reloadData()
-        }
-    }
-    
     // Function to prepopulate View
     func loadInitialData(){
-        self.saveBook("Test Book", author: "By Me", owned: true)
-        self.saveBook("Another Book", author: "By Someone Else", owned: false)
+        self.saveBook("Test Book", author: "By Me")
+        self.saveBook("Another Book", author: "By Someone Else")
         
         self.tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         fetchedResultController = getFetchResultController()
-        fetchedResultController.delegate = self.fetchControllerDelegate
+        fetchedResultController.delegate = self
         fetchedResultController.performFetch(nil)
         self.getFetchResults()
         
         if (self.isEmpty()){
             loadInitialData()
-        }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        let fetchedResults = self.getFetchResults()
-        
-        if let results = fetchedResults {
-            books = results
-        } else {
-            println("Could not fetch results.")
         }
     }
 
@@ -128,16 +68,9 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
-    // get number of sections
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        var numberOfSections = fetchedResultController.sections?.count
-        return numberOfSections!
-    }
-    
-    // Set the correct number of rows for number of items
+    // Set the correct number of rows for number of items in BookStore
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let numberOfRowsInSection = fetchedResultController.sections?[section].numberOfObjects
-
         return numberOfRowsInSection!
     }
     
@@ -146,7 +79,7 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
         
         var cell = tableView.dequeueReusableCellWithIdentifier("customTableViewCell", forIndexPath: indexPath) as UITableViewCell
         
-        let book = fetchedResultController.objectAtIndexPath(indexPath) as Book
+        let book = books[indexPath.row]
         cell.textLabel?.text = book.valueForKey("title") as String?
         cell.detailTextLabel?.text = book.valueForKey("author") as String?
         
@@ -156,86 +89,73 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
         return cell
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
-        if let sections = fetchedResultController.sections as? [NSFetchedResultsSectionInfo] {
-            if (sections[section].name == "0"){
-                return "Wishlist"
-            }else if (sections[section].name == "1"){
-                return "Owned books"
-            }else{
-                return "sectionName"
-            }
-        }
-        return nil
-    }
-    
-    override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        if sourceIndexPath == destinationIndexPath {
-            return
-        }
-        
-        fetchControllerDelegate.ignoreNextUpdates = true
-        let book = fetchedResultController.objectAtIndexPath(sourceIndexPath) as Book
-        
-        if sourceIndexPath.section != destinationIndexPath.section {
-            
-            if (destinationIndexPath.section == 1){
-                book.owned = true
-            } else{
-                book.owned = false
-            }
-            
-            // Update cell
-            NSOperationQueue.mainQueue().addOperationWithBlock { // Table view is in inconsistent state, gotta wait
-                if let cell = tableView.cellForRowAtIndexPath(destinationIndexPath) {
-                    self.configureCell(cell, book: book)
-                }
-            }
-        }
-        
-        // Save
-        book.managedObjectContext!.save(nil)
-    }
-
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if segue.identifier == "editItemSegue" {
-            let cell = sender as UITableViewCell
-            let indexPath = tableView.indexPathForCell(cell)
-            
-            if let editController:EditItemViewController = segue.destinationViewController as? EditItemViewController{
-                
-                editController.book = fetchedResultController.objectAtIndexPath(indexPath!) as? Book
-            }
-        }
-        else if segue.identifier == "newItemSegue" {
-            let newItemController:AddNewItemViewController = segue.destinationViewController as AddNewItemViewController
-            newItemController.managedContextOfNewItemVC = managedContext
-        }
-    }
-
-    
-    // ========================================
     //MARK: NSFetchedResultsController Delegate Functions
-    // ========================================
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        
+        switch type {
+        case NSFetchedResultsChangeType.Insert:
+            tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: UITableViewRowAnimation.Fade)
+            break
+        case NSFetchedResultsChangeType.Delete:
+            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: UITableViewRowAnimation.Fade)
+            break
+        case NSFetchedResultsChangeType.Move:
+            break
+        case NSFetchedResultsChangeType.Update:
+            break
+        default:
+            break
+        }
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController!) {
+        tableView.reloadData()
+    }
 
     // define swipe actions
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         if editingStyle == .Delete {
             // remove the deleted item from the model
-            let fetchedObject = fetchedResultController.objectAtIndexPath(indexPath) as Book
-            managedContext.deleteObject(fetchedObject as NSManagedObject)
+            managedContext.deleteObject(books[indexPath.row] as NSManagedObject)
             books.removeAtIndex(indexPath.row)
             managedContext.save(nil)
         }
     }
     
-    // ========================================
-    // MARK: Custom methods
-    // ========================================
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        let numberOfSections = fetchedResultController.sections?.count
+        return numberOfSections!
+    }
     
-    func saveBook(title: String, author: String, owned: Bool) {
+        
+    //TODO
+    @IBAction func editItemsInTableView(sender: UIBarButtonItem) {
+        // dummy function:
+        let alertController = UIAlertController(title: "Alert", message:
+            "clicked Edit", preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "editItemSegue" {
+            let cell = sender as UITableViewCell
+            let indexPath = tableView.indexPathForCell(cell)
+            
+                if let editController:EditItemViewController = segue.destinationViewController as? EditItemViewController{
+                    
+                    editController.book = books[indexPath!.row]
+                }
+            }
+        else if segue.identifier == "newItemSegue" {
+            let newItemController:AddNewItemViewController = segue.destinationViewController as AddNewItemViewController
+            newItemController.managedContextOfNewItemVC = managedContext
+        }
+    }
+    
+    func saveBook(title: String, author: String) {
         //create new managed object and insert it into managed object context
         let entity =  NSEntityDescription.entityForName("Book",
             inManagedObjectContext: managedContext)
@@ -246,7 +166,6 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
         //Key-Value-Coding for attributes
         book.setValue(title, forKey: "title")
         book.setValue(author, forKey: "author")
-        book.setValue(owned, forKey: "owned")
         
         //commit changes by saving + error handling
         var error: NSError?
@@ -267,5 +186,27 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
             return false
         }
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        let fetchedResults = self.getFetchResults()
+
+        if let results = fetchedResults {
+            books = results
+        } else {
+            println("Could not fetch results.")
+        }
+    }
+    
+    /*
+    FINISH: sections for tableView
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
+        if let sections = fetchedResultController.sections as? [NSFetchedResultsSectionInfo] {
+        return sections[section].name
+        }
+        return nil
+    }
+    */
 }
 
