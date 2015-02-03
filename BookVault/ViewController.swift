@@ -9,26 +9,31 @@
 import UIKit
 import CoreData
 
-class ViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class ViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
     
     var books = [Book]()
     
     let managedContext:NSManagedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
     var fetchedResultController: NSFetchedResultsController = NSFetchedResultsController()
     
+    // ========================================
+    // MARK: Core Data Functions
+    // ========================================
+    
     func getSortedFetchRequest() -> NSFetchRequest {
         //fetch all objects of entity
         let fetchRequest = NSFetchRequest(entityName:"Book")
         
-        let sortDescriptor = NSSortDescriptor(key: "author", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor]
+        let sortDescriptorForAuthor = NSSortDescriptor(key: "author", ascending: true)
+        let sortDescriptorForOwnedStatus = NSSortDescriptor(key: "owned", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptorForOwnedStatus, sortDescriptorForAuthor]
         
         return fetchRequest
     }
     
     func getFetchResultController() -> NSFetchedResultsController{
-        let fetchedResultController = NSFetchedResultsController(fetchRequest: getSortedFetchRequest(), managedObjectContext: managedContext, sectionNameKeyPath: nil, cacheName: nil)
-        
+        let fetchedResultController = NSFetchedResultsController(fetchRequest: getSortedFetchRequest(), managedObjectContext: managedContext, sectionNameKeyPath: "owned", cacheName: nil)
+        //"sectionName"
         return fetchedResultController
     }
 
@@ -42,10 +47,14 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
         return fetchedResults
     }
     
+    // ========================================
+    // MARK: View methods
+    // ========================================
+    
     // Function to prepopulate View
     func loadInitialData(){
-        self.saveBook("Test Book", author: "By Me")
-        self.saveBook("Another Book", author: "By Someone Else")
+        self.saveBook("Test Book", author: "By Me", owned: true)
+        self.saveBook("Another Book", author: "By Someone Else", owned: false)
         
         self.tableView.reloadData()
     }
@@ -62,15 +71,33 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
             loadInitialData()
         }
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        let fetchedResults = self.getFetchResults()
+        
+        if let results = fetchedResults {
+            books = results
+        } else {
+            println("Could not fetch results.")
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    // Set the correct number of rows for number of items in BookStore
+    // get number of sections
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        let numberOfSections = fetchedResultController.sections?.count
+        return numberOfSections!
+    }
+    
+    // Set the correct number of rows for number of items
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let numberOfRowsInSection = fetchedResultController.sections?[section].numberOfObjects
+
         return numberOfRowsInSection!
     }
     
@@ -79,7 +106,7 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
         
         var cell = tableView.dequeueReusableCellWithIdentifier("customTableViewCell", forIndexPath: indexPath) as UITableViewCell
         
-        let book = books[indexPath.row]
+        let book = fetchedResultController.objectAtIndexPath(indexPath) as Book
         cell.textLabel?.text = book.valueForKey("title") as String?
         cell.detailTextLabel?.text = book.valueForKey("author") as String?
         
@@ -89,7 +116,40 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
         return cell
     }
     
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
+        if let sections = fetchedResultController.sections as? [NSFetchedResultsSectionInfo] {
+            if (sections[section].name == "0"){
+                return "Wishlist"
+            }else if (sections[section].name == "1"){
+                return "Owned books"
+            }else{
+                return "sectionName"
+            }
+        }
+        return nil
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "editItemSegue" {
+            let cell = sender as UITableViewCell
+            let indexPath = tableView.indexPathForCell(cell)
+            
+            if let editController:EditItemViewController = segue.destinationViewController as? EditItemViewController{
+                
+                editController.book = fetchedResultController.objectAtIndexPath(indexPath!) as? Book
+            }
+        }
+        else if segue.identifier == "newItemSegue" {
+            let newItemController:AddNewItemViewController = segue.destinationViewController as AddNewItemViewController
+            newItemController.managedContextOfNewItemVC = managedContext
+        }
+    }
+
+    
+    // ========================================
     //MARK: NSFetchedResultsController Delegate Functions
+    // ========================================
+    
     func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
         
         switch type {
@@ -123,39 +183,11 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
         }
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        let numberOfSections = fetchedResultController.sections?.count
-        return numberOfSections!
-    }
+    // ========================================
+    // MARK: Custom methods
+    // ========================================
     
-        
-    //TODO
-    @IBAction func editItemsInTableView(sender: UIBarButtonItem) {
-        // dummy function:
-        let alertController = UIAlertController(title: "Alert", message:
-            "clicked Edit", preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if segue.identifier == "editItemSegue" {
-            let cell = sender as UITableViewCell
-            let indexPath = tableView.indexPathForCell(cell)
-            
-                if let editController:EditItemViewController = segue.destinationViewController as? EditItemViewController{
-                    
-                    editController.book = books[indexPath!.row]
-                }
-            }
-        else if segue.identifier == "newItemSegue" {
-            let newItemController:AddNewItemViewController = segue.destinationViewController as AddNewItemViewController
-            newItemController.managedContextOfNewItemVC = managedContext
-        }
-    }
-    
-    func saveBook(title: String, author: String) {
+    func saveBook(title: String, author: String, owned: Bool) {
         //create new managed object and insert it into managed object context
         let entity =  NSEntityDescription.entityForName("Book",
             inManagedObjectContext: managedContext)
@@ -166,6 +198,7 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
         //Key-Value-Coding for attributes
         book.setValue(title, forKey: "title")
         book.setValue(author, forKey: "author")
+        book.setValue(owned, forKey: "owned")
         
         //commit changes by saving + error handling
         var error: NSError?
@@ -187,26 +220,14 @@ class ViewController: UITableViewController, NSFetchedResultsControllerDelegate 
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        let fetchedResults = self.getFetchResults()
-
-        if let results = fetchedResults {
-            books = results
-        } else {
-            println("Could not fetch results.")
-        }
+    //TODO
+    @IBAction func editItemsInTableView(sender: UIBarButtonItem) {
+        // dummy function:
+        let alertController = UIAlertController(title: "Alert", message:
+            "clicked Edit", preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
-    
-    /*
-    FINISH: sections for tableView
-    
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
-        if let sections = fetchedResultController.sections as? [NSFetchedResultsSectionInfo] {
-        return sections[section].name
-        }
-        return nil
-    }
-    */
 }
 
