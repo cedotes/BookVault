@@ -93,11 +93,7 @@
 			remoteGlobalIDString = 413D69B71A3F121B00DE2CE1;
 			remoteInfo = BookVault;
 		};
-<<<<<<< HEAD
-		415669931A80F79C0045BDC0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4156515C1A80F6580045BDC0 /* GTL.xcodeproj */;
-=======
+
 		63BCD2001A7AF7F10066B166 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 63BCD1FC1A7AF7F10066B166 /* RSBarcodes.xcodeproj */;
@@ -115,60 +111,38 @@
 		63EE20121A7E8BB600B46B31 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 63EE200B1A7E8BB600B46B31 /* GTL.xcodeproj */;
->>>>>>> feature/scanFromCamera
+
 			proxyType = 2;
 			remoteGlobalIDString = 4F38F6A60B66E91D00B24B81;
 			remoteInfo = GTLFramework;
 		};
-<<<<<<< HEAD
-		415669951A80F79C0045BDC0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4156515C1A80F6580045BDC0 /* GTL.xcodeproj */;
-=======
+
 		63EE20141A7E8BB600B46B31 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 63EE200B1A7E8BB600B46B31 /* GTL.xcodeproj */;
->>>>>>> feature/scanFromCamera
+
 			proxyType = 2;
 			remoteGlobalIDString = 4F12027C11A4CA2F00BEB470;
 			remoteInfo = GTLTouchStaticLib;
 		};
-<<<<<<< HEAD
-		415669971A80F79C0045BDC0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4156515C1A80F6580045BDC0 /* GTL.xcodeproj */;
-=======
+
 		63EE20161A7E8BB600B46B31 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 63EE200B1A7E8BB600B46B31 /* GTL.xcodeproj */;
->>>>>>> feature/scanFromCamera
+
 			proxyType = 2;
 			remoteGlobalIDString = 4F12027D11A4CA2F00BEB470;
 			remoteInfo = GTLUnitTests;
 		};
-<<<<<<< HEAD
-		415669991A80F79C0045BDC0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4156515C1A80F6580045BDC0 /* GTL.xcodeproj */;
-=======
+
 		63EE20181A7E8BB600B46B31 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 63EE200B1A7E8BB600B46B31 /* GTL.xcodeproj */;
->>>>>>> feature/scanFromCamera
+
 			proxyType = 2;
 			remoteGlobalIDString = 4F1AD9020B71603F00DC0485;
 			remoteInfo = DevelopmentTestTool;
 		};
-<<<<<<< HEAD
-		4156699C1A80F79C0045BDC0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4156510C1A80F64C0045BDC0 /* RSBarcodes.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D08336371A202E81004EE128;
-			remoteInfo = RSBarcodes;
-		};
-=======
->>>>>>> feature/scanFromCamera
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -354,13 +328,10 @@
 		413D69AF1A3F121B00DE2CE1 = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				4156515C1A80F6580045BDC0 /* GTL.xcodeproj */,
-				4156510C1A80F64C0045BDC0 /* RSBarcodes.xcodeproj */,
-=======
+
 				63EE200B1A7E8BB600B46B31 /* GTL.xcodeproj */,
 				63BCD1FC1A7AF7F10066B166 /* RSBarcodes.xcodeproj */,
->>>>>>> feature/scanFromCamera
+
 				413D69BA1A3F121B00DE2CE1 /* BookVault */,
 				413D69D01A3F121B00DE2CE1 /* BookVaultTests */,
 				413D69B91A3F121B00DE2CE1 /* Products */,
@@ -734,21 +705,14 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-<<<<<<< HEAD
-					ProductGroup = 415669871A80F79A0045BDC0 /* Products */;
-					ProjectRef = 4156515C1A80F6580045BDC0 /* GTL.xcodeproj */;
-				},
-				{
-					ProductGroup = 415669831A80F79A0045BDC0 /* Products */;
-					ProjectRef = 4156510C1A80F64C0045BDC0 /* RSBarcodes.xcodeproj */;
-=======
+
 					ProductGroup = 63EE200C1A7E8BB600B46B31 /* Products */;
 					ProjectRef = 63EE200B1A7E8BB600B46B31 /* GTL.xcodeproj */;
 				},
 				{
 					ProductGroup = 63BCD1FD1A7AF7F10066B166 /* Products */;
 					ProjectRef = 63BCD1FC1A7AF7F10066B166 /* RSBarcodes.xcodeproj */;
->>>>>>> feature/scanFromCamera
+
 				},
 			);
 			projectRoot = "";
@@ -760,41 +724,7 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-<<<<<<< HEAD
-		415669941A80F79C0045BDC0 /* GTL.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = GTL.framework;
-			remoteRef = 415669931A80F79C0045BDC0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		415669961A80F79C0045BDC0 /* libGTLTouchStaticLib.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libGTLTouchStaticLib.a;
-			remoteRef = 415669951A80F79C0045BDC0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		415669981A80F79C0045BDC0 /* GTLUnitTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = GTLUnitTests.xctest;
-			remoteRef = 415669971A80F79C0045BDC0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4156699A1A80F79C0045BDC0 /* DevelopmentTestTool */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = DevelopmentTestTool;
-			remoteRef = 415669991A80F79C0045BDC0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4156699D1A80F79C0045BDC0 /* RSBarcodes.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = RSBarcodes.framework;
-			remoteRef = 4156699C1A80F79C0045BDC0 /* PBXContainerItemProxy */;
-=======
+
 		63BCD2011A7AF7F10066B166 /* RSBarcodes.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -828,7 +758,7 @@
 			fileType = "compiled.mach-o.executable";
 			path = DevelopmentTestTool;
 			remoteRef = 63EE20181A7E8BB600B46B31 /* PBXContainerItemProxy */;
->>>>>>> feature/scanFromCamera
+
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -864,14 +794,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
-				41928EA71A7AB52F00DA484A /* FetchControllerDelegate.swift in Sources */,
-=======
+
 				63EE20D31A7E8D4500B46B31 /* GTLBooksVolumes.m in Sources */,
 				63EE205B1A7E8BC100B46B31 /* GTLService.m in Sources */,
 				63EE20651A7E8BC100B46B31 /* GTMHTTPFetcherService.m in Sources */,
 				63EE20601A7E8BC100B46B31 /* GTLRuntimeCommon.m in Sources */,
->>>>>>> feature/scanFromCamera
 				413E5CD61A73D12100E237A3 /* Book.swift in Sources */,
 				63EE20681A7E8BC100B46B31 /* GTMHTTPFetchHistory.m in Sources */,
 				63EE20C81A7E8D4500B46B31 /* GTLBooksLayersummary.m in Sources */,
