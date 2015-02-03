@@ -131,7 +131,6 @@ class ViewController: UITableViewController, UITableViewDataSource, UITableViewD
     // get number of sections
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         var numberOfSections = fetchedResultController.sections?.count
-        
         return numberOfSections!
     }
     
