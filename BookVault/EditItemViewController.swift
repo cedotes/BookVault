@@ -26,6 +26,11 @@ class EditItemViewController: UIViewController {
         }
     }
     
+    // make keyboard disappear when touch somewhere else
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         // Save input data for storage in ViewController
         if segue.identifier == "dismissAndSave" {
